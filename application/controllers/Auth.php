@@ -83,7 +83,7 @@ class Auth extends CI_Controller
 		$this->session->set_flashdata("upline",$this->uri->segment(2));
 		redirect('register');
 	}
-	public function activattion()
+	public function activation()
 	{
 		$subcribe = $this->app->username_sucribe($_GET['id']);
 		$level_1 = $this->app->level($subcribe->username);
@@ -127,6 +127,6 @@ class Auth extends CI_Controller
 			}
 		}
 		//Bonus Level
-
+		$this->db->update("subcribe",['status'=>1],['id'=>$_GET['id']]);
 	}
 }

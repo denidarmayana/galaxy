@@ -12,11 +12,11 @@
 	<meta name="description" content="Zenix - Crypto Codeigniter Admin Dashboard" />
 	<meta property="og:title" content="Zenix - Crypto Codeigniter Admin Dashboard" />
 	<meta property="og:description" content="Zenix - Crypto Codeigniter Admin Dashboard" />
-	<meta property="og:image" content="../../social-image.png" />
+	<meta property="og:image" content="<?=base_url() ?>icon.png" />
 	<meta name="format-detection" content="telephone=no">
     <title>Register - Galaxy </title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?=base_url() ?>assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?=base_url() ?>assets/icon.png">
     <link href="<?=base_url() ?>assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css?=<?=time() ?>" rel="stylesheet">
     <link href="<?=base_url() ?>assets/css/style.css?=<?=time() ?>" rel="stylesheet">
 	<link href="<?=base_url() ?>assets/css/toastr.min.css?=<?=time() ?>" rel="stylesheet">
@@ -32,7 +32,7 @@
 							<div class="col-xl-12">
 								<div class="auth-form">
 									<div class="text-center mb-3">
-										<img src="<?=base_url() ?>assets/images/logo-full-black.png" alt="">
+										<img src="<?=base_url() ?>assets/logo.png" alt="" width="60%">
 									</div>
 									<h4 class="text-center mb-4">Sign up your account</h4>
 									<div id="loading" style="display: none;">

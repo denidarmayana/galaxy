@@ -50,7 +50,8 @@ function calculateTimeDifference(mysqlDatetime1, mysqlDatetime2) {
 }
 var amount_paket = $("#amount_paket").val();
 var tgl_paket = $("#tgl_paket").val();
-if (amount_paket != "") {
+console.log(amount_paket)
+if (amount_paket && amount_paket != "") {
 	function tgl_akhir() {
 		var tgl = tgl_paket.split(" ");
 		var waktu = tgl[1].split(":");
@@ -92,12 +93,49 @@ $(".link_ref").click(function() {
 
 	document.execCommand("copy");
 	document.body.removeChild(tempTextArea);
-	toastr.success("Referral link successfully copied")
+	toastr.info("Referral link successfully copied")
 })
+$("#btn_conf").click(function() {
+	var hash = $("#hash").val();
+	if (hash == "") {
+		toastr.error("Hash can't be empty")
+	}else{
+		var settings = {
+		  "url": "./confirmation",
+		  "method": "POST",
+		  "timeout": 0,
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Authorization": localStorage.getItem('token')
+		  },
+		  "data": {
+		    "hash": hash
+		  }
+		};
 
+		$.ajax(settings).done(function (response) {
+		  if (response.code == 200) {
+		  	toastr.info(response.message)
+		  	setTimeout(function() {
+		  		window.location.href="./package"
+		  	},1500)
+		  }else{
+		  	toastr.error(response.message)
+		  }
+		});
+	}
+})
 $("#wallet").click(function() {
-	
-	toastr.success("Wallet Address successfully copied")
+	var link = $("#wallet").html();
+	var tempTextArea = document.createElement("textarea");
+    tempTextArea.value = link;
+    document.body.appendChild(tempTextArea);
+    tempTextArea.select();
+
+	document.execCommand("copy");
+	document.body.removeChild(tempTextArea);
+
+	toastr.info("Wallet Address successfully copied")
 })
 
 $(".subcribe1").click(function() {

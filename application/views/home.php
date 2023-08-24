@@ -8,7 +8,9 @@
 	<div class="col-sm-6 col-12 p-md-0 ">
 		<div class="welcome-text">
 			<h4>Link Referral</h4>
-			<span class="link_ref" style="cursor: pointer;"><?=base_url('reff/').$user->username ?></span>
+			<?php if ($subcribe > 0) { ?>
+				<span class="link_ref" style="cursor: pointer;"><?=base_url('reff/').$user->username ?></span>
+			<?php } ?>
 		</div>
 	</div>
 </div>
@@ -39,9 +41,11 @@
 							<input type="hidden" id="tgl_paket" value="<?=$subcribe->created_at ?>">
 							<input type="hidden" id="amount_paket" value="<?=$pkt->amount ?>">
 							<span class="time_roi"></span>
-						<?php }else{
-							echo "0.00000000 MBIT";
-						} ?>
+						<?php }else{ ?>
+							<input type="hidden" id="tgl_paket" value="<?=date("Y-m-d H:i:s") ?>">
+							<input type="hidden" id="amount_paket" >
+							0.00000000 MBIT
+						<?php } ?>
 					</a>
 					<a class="btn btn-outline-warning btn-block mt-3 px-5" href="javascript:void(0)">
 						<?php 
