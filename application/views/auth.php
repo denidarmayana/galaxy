@@ -9,9 +9,9 @@
 	<meta name="author" content="galaxy7.tech" />
 	<meta name="robots" content="" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-	<meta name="description" content="Zenix - Crypto Codeigniter Admin Dashboard" />
-	<meta property="og:title" content="Zenix - Crypto Codeigniter Admin Dashboard" />
-	<meta property="og:description" content="Zenix - Crypto Codeigniter Admin Dashboard" />
+	<meta name="description" content="Galaxy Seven - Crypto Minner for our future" />
+	<meta property="og:title" content="Galaxy Seven - Crypto Minner for our future" />
+	<meta property="og:description" content="Galaxy Seven - Crypto Minner for our future" />
 	<meta property="og:image" content="<?=base_url() ?>icon.png" />
 	<meta name="format-detection" content="telephone=no">
     <title>Login - Galaxy </title>

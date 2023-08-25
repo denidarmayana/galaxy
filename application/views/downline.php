@@ -2,7 +2,7 @@
 	<div class="col-sm-12 col-12 p-md-0">
 		<div class="card">
 			<div class="card-body">
-				<div id="DZ_W_Todo1" class="widget-media dz-scroll height370">
+				<div id="DZ_W_Todo1" class="widget-media dz-scroll">
 					<ul class="timeline">
 						<?php $no=0; foreach ($downline as $key) {$no++;
 							$s = $this->db->select('name')->join('paket','paket.id=subcribe.paket')->get_where("subcribe",['members'=>$key->username])->row();
