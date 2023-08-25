@@ -54,7 +54,7 @@
 ***********************************-->
 <div class="nav-header">
 	<a href="<?=base_url() ?>" class="brand-logo">
-		<img src="<?=base_url('assets/logo_header.png') ?>" width="90%">
+		<img src="<?=base_url('assets/logo_sidebar.png') ?>" width="90%">
 	</a>
 
 	<div class="nav-control">
