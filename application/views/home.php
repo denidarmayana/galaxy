@@ -37,14 +37,21 @@
 						<?php 
 						$subcribe = $this->db->order_by('id','desc')->get_where("subcribe",['members'=>$user->username,'status'=>1])->row();
 						if ($subcribe) {
-							$pkt = $this->db->get_where("paket",['id'=>$subcribe->paket])->row(); ?>
-							<input type="hidden" id="tgl_paket" value="<?=$subcribe->created_at ?>">
-							<input type="hidden" id="amount_paket" value="<?=$pkt->amount ?>">
-							<span class="time_roi"></span>
+							$pkt = $this->db->get_where("paket",['id'=>$subcribe->paket])->row();
+							$harian = $pkt->amount*(1/100);
+							$tambah_hari = date('Y-m-d H:i:s', strtotime('+1 days', strtotime($subcribe->updated_at)));
+							$selisih = selisih_waktu($tambah_hari);
+							$bns_detik = $harian / (24*60*60);
+							$bns_jam = $harian / 24;
+							$bns_menis = $harian / (24*60);
+							$bns_now = ($bns_jam*$selisih->h)+($bns_menis*$selisih->i)+($bns_detik*$selisih->s);
+							?>
+							<input type="hidden" value="<?=$bns_detik ?>" id="bns_detik">
+							<span id="roi"><?=number_format($bns_now,8,'.',',') ?></span>
+							
 						<?php }else{ ?>
-							<input type="hidden" id="tgl_paket" value="<?=date("Y-m-d H:i:s") ?>">
-							<input type="hidden" id="amount_paket" >
-							0.00000000 MBIT
+							<input type="hidden" value="0" id="bns_detik">
+							<span id="roi"><?=number_format(0.00000000,8,'.',',') ?></span>
 						<?php } ?>
 					</a>
 					<a class="btn btn-outline-warning btn-block mt-3 px-5" href="javascript:void(0)">
