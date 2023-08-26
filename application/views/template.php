@@ -151,6 +151,11 @@
                     <li><a href="<?=base_url('transaction/withdrawal') ?>">Withdrawal</a></li>
                 </ul>
             </li>
+            <li><a href="<?=base_url('bot') ?>">
+	                <i class="flaticon-381-home"></i>
+	                <span class="nav-text">Bit Bot</span>
+	            </a>
+	        </li>
         </ul>
 		<div class="copyright">
 			<p><strong>Galaxy 7</strong> &copy; <?=date('Y') ?> All Rights Reserved</p>
