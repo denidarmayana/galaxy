@@ -6,8 +6,8 @@ $reward = $this->db->select_sum("amount")->get_where('reward',['members'=>$this-
 $wd = $this->db->select_sum("amount")->get_where('widthdrawal',['members'=>$this->session->userdata("username")])->row();
 $wd_today = $this->db->like('created_at',date("Y-m-d"))->get_where('widthdrawal',['members'=>$this->session->userdata("username")]);
 $total_bonus = ($roi->amount+$bonus_level->amount+$reward->amount);
-$max = $paket->amount*(20/100);
-$min = $paket->amount*(10/100);
+$max = ($paket ? $paket->amount : 0 )*(20/100);
+$min = ($paket ? $paket->amount: 0 )*(10/100);
 ?>
 <div class="row">
 	<div class="col-sm-6 col-12">
