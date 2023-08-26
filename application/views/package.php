@@ -42,6 +42,9 @@
 		</div>
 	</div>
 <?php } else { ?>
+
+<?php } ?>
+
 <div class="row">
 	<?php foreach ($paket as $key) { ?>
 		<div class="col-xl-4 col-sm-6 m-t35">
@@ -62,4 +65,3 @@
 		</div>
 	<?php } ?>
 </div>
-<?php } ?>

@@ -7,6 +7,62 @@ if (localStorage.getItem('token') == "") {
 	},60000)
 	
 }
+
+
+
+$("#amount").keyup(function() {
+	var amount = $(this).val();
+	var fee =  parseInt(amount)*(10/100)
+	var net = parseInt(amount) - parseInt(fee)
+	var max = $("#max_wd").val();
+	var min = $("#min_wd").val();
+	$("#act_wd").attr("disabled", true);
+	$("#fee").val(fee);
+	$("#net").val(net);
+	setTimeout(function() {
+		if (amount > max) {
+			toastr.error("Your maximum withdrawal is "+max+" MBIT")
+			$("#amount").val("")
+			$("#net").val("")
+			$("#fee").val("")
+			$("#amount").focus()
+			$("#act_wd").attr("disabled", true);
+		}else{
+			$("#act_wd").attr("disabled", false);
+		}
+	},1000)
+	console.log(amount,fee,net,max,min)
+})
+$("#act_wd").click(function() {
+	var amount = $("#amount").val();
+	var fee =  $("#fee").val();
+	var net = $("#net").val();
+	var settings = {
+	  "url": "./act_wd",
+	  "method": "POST",
+	  "timeout": 0,
+	  "headers": {
+	    "Content-Type": "application/x-www-form-urlencoded",
+	    "Authorization": localStorage.getItem('token')
+	  },
+	  "data": {
+	    "amount": amount,
+	    "fee": fee,
+	    "net": net,
+	  }
+	};
+
+	$.ajax(settings).done(function (response) {
+	  if (response.code == 200) {
+	  	toastr.info(response.message)
+	  	setTimeout(function() {
+	  		window.location.href="./withdrawal"
+	  	},1500)
+	  }else{
+	  	toastr.error(response.message)
+	  }
+	});
+})
 function cekSessions() {
 	var urls = "./auth/cek_token/"+localStorage.getItem('token')
 	var settings = {
