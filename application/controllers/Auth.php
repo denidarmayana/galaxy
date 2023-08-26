@@ -86,46 +86,46 @@ class Auth extends CI_Controller
 	public function activation()
 	{
 		$subcribe = $this->app->username_sucribe($_GET['id']);
-		// $level_1 = $this->app->level($subcribe->username);
-		// if ($level_1) {
-		// 	$this->app->bonus_level($level_1->username,$level_1->upline,$subcribe->amount,1);
-		// 	$level_2 = $this->app->level($level_1->upline);
-		// 	if ($level_2) {
-		// 		$this->app->bonus_level($level_1->username,$level_2->upline,$subcribe->amount,2);
-		// 		$level_3 = $this->app->level($level_2->upline);
-		// 		if ($level_3) {
-		// 			$this->app->bonus_level($level_1->username,$level_3->upline,$subcribe->amount,3);
-		// 			$level_4 = $this->app->level($level_3->upline);
-		// 			if ($level_4) {
-		// 				$this->app->bonus_level($level_1->username,$level_4->upline,$subcribe->amount,4);
-		// 				$level_5 = $this->app->level($level_4->upline);
-		// 				if ($level_5) {
-		// 					$this->app->bonus_level($level_1->username,$level_5->upline,$subcribe->amount,5);
-		// 					$level_6 = $this->app->level($level_5->upline);
-		// 					if ($level_6) {
-		// 						$this->app->bonus_level($level_1->username,$level_6->upline,$subcribe->amount,6);
-		// 						$level_7 = $this->app->level($level_6->upline);
-		// 						if ($level_7) {
-		// 							$this->app->bonus_level($level_1->username,$level_7->upline,$subcribe->amount,7);
-		// 							$level_8 = $this->app->level($level_7->upline);
-		// 							if ($level_8) {
-		// 								$this->app->bonus_level($level_1->username,$level_8->upline,$subcribe->amount,8);
-		// 								$level_9 = $this->app->level($level_8->upline);
-		// 								if ($level_9) {
-		// 									$this->app->bonus_level($level_1->username,$level_9->upline,$subcribe->amount,9);
-		// 									$level_10 = $this->app->level($level_9->upline);
-		// 									if ($level_10) {
-		// 										$this->app->bonus_level($level_1->username,$level_10->upline,$subcribe->amount,10);
-		// 									}
-		// 								}
-		// 							}
-		// 						}
-		// 					}
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
+		$level_1 = $this->app->level($subcribe->username);
+		if ($level_1) {
+			$this->app->bonus_level($level_1->username,$level_1->upline,$subcribe->amount,1);
+			$level_2 = $this->app->level($level_1->upline);
+			if ($level_2) {
+				$this->app->bonus_level($level_1->username,$level_2->upline,$subcribe->amount,2);
+				$level_3 = $this->app->level($level_2->upline);
+				if ($level_3) {
+					$this->app->bonus_level($level_1->username,$level_3->upline,$subcribe->amount,3);
+					$level_4 = $this->app->level($level_3->upline);
+					if ($level_4) {
+						$this->app->bonus_level($level_1->username,$level_4->upline,$subcribe->amount,4);
+						$level_5 = $this->app->level($level_4->upline);
+						if ($level_5) {
+							$this->app->bonus_level($level_1->username,$level_5->upline,$subcribe->amount,5);
+							$level_6 = $this->app->level($level_5->upline);
+							if ($level_6) {
+								$this->app->bonus_level($level_1->username,$level_6->upline,$subcribe->amount,6);
+								$level_7 = $this->app->level($level_6->upline);
+								if ($level_7) {
+									$this->app->bonus_level($level_1->username,$level_7->upline,$subcribe->amount,7);
+									$level_8 = $this->app->level($level_7->upline);
+									if ($level_8) {
+										$this->app->bonus_level($level_1->username,$level_8->upline,$subcribe->amount,8);
+										$level_9 = $this->app->level($level_8->upline);
+										if ($level_9) {
+											$this->app->bonus_level($level_1->username,$level_9->upline,$subcribe->amount,9);
+											$level_10 = $this->app->level($level_9->upline);
+											if ($level_10) {
+												$this->app->bonus_level($level_1->username,$level_10->upline,$subcribe->amount,10);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 		//Bonus Level
 		$active_paket = $this->db->select('members.upline,subcribe.*')->join('members','members.username=subcribe.members')->order_by('subcribe.id','desc')->get_where("subcribe",['subcribe.id'=>$_GET['id']])->row();
 		if ($active_paket->paket == 2) {
