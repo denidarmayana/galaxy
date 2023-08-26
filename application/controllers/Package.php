@@ -17,7 +17,7 @@ class Package extends CI_Controller
 			'title'=>"Package",
 			'user'=>$this->db->get_where("members",['username'=>$this->session->userdata('username')])->row(),
 			'paket'=>$this->db->get("paket")->result(),
-			'subcribe'=>$this->db->select('paket.name,subcribe.status,paket.amount,subcribe.hash')->join('paket','paket.id=subcribe.paket')->order_by('subcribe.id','desc')->get_where("subcribe",['members'=>$this->session->userdata('username')])->row()
+			'subcribe'=>$this->db->select('paket.name,subcribe.status,subcribe.hash')->join('paket','paket.id=subcribe.paket')->order_by('subcribe.id','desc')->get_where("subcribe",['members'=>$this->session->userdata('username')])->row()
 			
 		];
 		$this->template->load("template",'package',$data);
@@ -30,9 +30,13 @@ class Package extends CI_Controller
 			redirect('forbiden');
 		}else{
 			$head = json_decode(verify_jwt($header));
+			$randomNumber = mt_rand(1000, 9999);
+			$pk = $this->db->get_where("paket",['id'=>$this->input->post("paket")])->row();
+			$amount = $pk->amount+$randomNumber;
 			$save = $this->db->insert("subcribe",[
 				'members'=>$head->user_id,
-				'paket'=>$this->input->post("paket")
+				'paket'=>$this->input->post("paket"),
+				'amount'=>$amount
 			]);
 			if ($save) {
 				json_success("You have successfully subscribed to our package",null);
