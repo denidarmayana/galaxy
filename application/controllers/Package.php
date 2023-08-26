@@ -17,7 +17,7 @@ class Package extends CI_Controller
 			'title'=>"Package",
 			'user'=>$this->db->get_where("members",['username'=>$this->session->userdata('username')])->row(),
 			'paket'=>$this->db->get("paket")->result(),
-			'subcribe'=>$this->db->select('paket.name,subcribe.status,subcribe.hash')->join('paket','paket.id=subcribe.paket')->order_by('subcribe.id','desc')->get_where("subcribe",['members'=>$this->session->userdata('username')])->row()
+			'subcribe'=>$this->db->select('paket.name,subcribe.status,subcribe.amount,subcribe.hash')->join('paket','paket.id=subcribe.paket')->order_by('subcribe.id','desc')->get_where("subcribe",['members'=>$this->session->userdata('username')])->row()
 			
 		];
 		$this->template->load("template",'package',$data);
