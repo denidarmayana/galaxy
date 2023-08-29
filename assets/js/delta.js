@@ -7,30 +7,39 @@ if (localStorage.getItem('token') == "") {
 	},60000)
 	
 }
-
-
-
+var total_bonus = $("#total_bonus").val();
+console.log(total_bonus)
+if (total_bonus == 0) {
+	$(".form").hide()
+	$(".notif").html("<div class='alert alert-danger'>You don't have anought balance</div>")
+}
 $("#amount").keyup(function() {
 	var amount = $(this).val();
-	var fee =  parseInt(amount)*(10/100)
-	var net = parseInt(amount) - parseInt(fee)
-	var max = $("#max_wd").val();
-	var min = $("#min_wd").val();
-	$("#act_wd").attr("disabled", true);
-	$("#fee").val(fee);
-	$("#net").val(net);
-	setTimeout(function() {
-		if (amount > max) {
-			toastr.error("Your maximum withdrawal is "+max+" MBIT")
-			$("#amount").val("")
-			$("#net").val("")
-			$("#fee").val("")
-			$("#amount").focus()
-			$("#act_wd").attr("disabled", true);
-		}else{
-			$("#act_wd").attr("disabled", false);
-		}
-	},1000)
+	if (total_bonus > 0 && total_bonus > amount) {
+		var fee =  parseInt(amount)*(10/100)
+		var net = parseInt(amount) - parseInt(fee)
+		var max = $("#max_wd").val();
+		var min = $("#min_wd").val();
+		$("#act_wd").attr("disabled", true);
+		$("#fee").val(fee);
+		$("#net").val(net);
+		setTimeout(function() {
+			if (amount > max) {
+				toastr.error("Your maximum withdrawal is "+max+" MBIT")
+				$("#amount").val("")
+				$("#net").val("")
+				$("#fee").val("")
+				$("#amount").focus()
+				$("#act_wd").attr("disabled", true);
+			}else{
+				$("#act_wd").attr("disabled", false);
+			}
+		},1500)	
+	}else{
+		$("#amount").attr("readonly",true)
+		toastr.error("Your balance is "+ parseInt(total_bonus).toFixed(8) +" MBIT")
+	}
+	
 	console.log(amount,fee,net,max,min)
 })
 $("#act_wd").click(function() {

@@ -19,7 +19,7 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 				<p class="text-black m-0">1. The fee for each withdrawal is 10% of the total withdrawal</p>
 				<p class="text-black m-0">2. Minimum withdrawal of 10% of your subscription package</p>
 				<p class="text-black m-0">3. Maximum withdrawal of 20% of your subscription package</p>
-				<p class="text-black mt-4 mb-0">Active Pakcage <?=($paket ? $paket->name : "No Active Package") ?> ?></p>
+				<p class="text-black mt-4 mb-0">Active Pakcage <?=($paket ? $paket->name : "No Active Package") ?></p>
 				<p class="text-black m-0">Maximum withdrawal <?=number($max) ?> MBIT</p>
 				<p class="text-black m-0">Minimum withdrawal <?=number($min) ?> MBIT</p>
 
@@ -30,6 +30,7 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 				<p class="text-danger m-0 font-w600" >Total : <?=number($total_bonus) ?> MBIT</p>
 				<p class="text-black m-0">Total Withdrawal : <?=number($wd->amount) ?> MBIT</p>
 				<p class="text-success m-0">Remaining Bonuses : <?=number($total_bonus-$wd->amount) ?> MBIT</p>
+				<input type="hidden" id="total_bonus" value="<?=$total_bonus-$wd->amount ?>">
 			</div>
 		</div>
 	</div>
@@ -39,25 +40,28 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 				<h3 class="card-title">Withdrawal Form</h3>
 			</div>
 			<div class="card-body">
-				<?php if ($wd_today->num_rows() == 0) { ?>
-				<input type="hidden" id="max_wd" value="<?=$max ?>">
-				<input type="hidden" id="min_wd" value="<?=$min ?>">
-				<div class="form-group">
-					<label class="mb-1"><strong>Amount</strong></label>
-					<input type="text" id="amount" class="form-control" placeholder="0">
+				<div class="notif"></div>
+				<div class="form">
+					<?php if ($wd_today->num_rows() == 0) { ?>
+					<input type="hidden" id="max_wd" value="<?=$max ?>">
+					<input type="hidden" id="min_wd" value="<?=$min ?>">
+					<div class="form-group">
+						<label class="mb-1"><strong>Amount</strong></label>
+						<input type="text" id="amount" class="form-control" placeholder="0">
+					</div>
+					<div class="form-group">
+						<label class="mb-1"><strong>Fee Transaction</strong></label>
+						<input type="text" id="fee" readonly class="form-control" placeholder="0">
+					</div>
+					<div class="form-group">
+						<label class="mb-1"><strong>Net Amount</strong></label>
+						<input type="text" id="net" readonly class="form-control" placeholder="0">
+					</div>
+					<div class="text-center">
+						<button type="button" disabled id="act_wd" class="btn btn-primary btn-block">Submit</button>
+					</div>
+					<?php } ?>
 				</div>
-				<div class="form-group">
-					<label class="mb-1"><strong>Fee Transaction</strong></label>
-					<input type="text" id="fee" readonly class="form-control" placeholder="0">
-				</div>
-				<div class="form-group">
-					<label class="mb-1"><strong>Net Amount</strong></label>
-					<input type="text" id="net" readonly class="form-control" placeholder="0">
-				</div>
-				<div class="text-center">
-					<button type="button" disabled id="act_wd" class="btn btn-primary btn-block">Submit</button>
-				</div>
-			<?php } ?>
 			</div>
 		</div>
 	</div>

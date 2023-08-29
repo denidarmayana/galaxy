@@ -17,6 +17,14 @@ class Model_app extends CI_Model
 			redirect("auth");
 		}
 	}
+	function cekControl()
+	{
+		if ($this->session->userdata("is_admin") == TRUE) {
+			return TRUE;
+		}else{
+			redirect("login");
+		}
+	}
 	public function username_sucribe($id)
 	{
 		$row = $this->db->select('paket.amount,members.username')->join('paket','paket.id=subcribe.paket')->join('members','members.username=subcribe.members')->get_where("subcribe",['subcribe.id'=>$id])->row();

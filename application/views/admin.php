@@ -53,7 +53,7 @@
 	Nav header start
 ***********************************-->
 <div class="nav-header">
-	<a href="<?=base_url() ?>" class="brand-logo">
+	<a href="<?=base_url('control') ?>" class="brand-logo">
 		<img src="<?=base_url('assets/logo_sidebar.png') ?>" width="90%">
 	</a>
 
@@ -85,8 +85,8 @@
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
                             <img src="<?=base_url('') ?>assets/images/avatar/1.png" width="20" alt=""/>
 							<div class="header-info">
-								<span><?=$user->name ?></span>
-								<small><?=$user->username ?></small>
+								<span><?=$user['name'] ?></span>
+								<small><?=$user['email'] ?></small>
 							</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -120,45 +120,40 @@
 				<img src="<?=base_url('') ?>assets/images/avatar/1.png" alt="">
 				<a href="javascript:void(0);"><i class="fa fa-cog" aria-hidden="true"></i></a>
 			</div>
-			<h5 class="name"><span class="font-w400">Hello,</span> <?=$user->name ?></h5>
-			<p class="email"><?=$user->email ?></p>
+			<h5 class="name"><span class="font-w400">Hello,</span> <?=$user['name'] ?></h5>
+			<p class="email"><?=$user['email'] ?></p>
 		</div>
 		<ul class="metismenu" id="menu">
 			<li class="nav-label first">Main Menu</li>
-            <li><a href="<?=base_url('') ?>">
+            <li><a href="<?=base_url('control') ?>">
 	                <i class="flaticon-381-home"></i>
 	                <span class="nav-text">Dashboard</span>
 	            </a>
 	        </li>
-            <li><a href="<?=base_url('package') ?>">
+            <li><a href="<?=base_url('control/members') ?>">
 	                <i class="flaticon-381-diamond"></i>
-	                <span class="nav-text">Package</span>
+	                <span class="nav-text">Members</span>
 	            </a>
 	        </li>
-	        <li><a href="<?=base_url('downline') ?>">
+	        <li><a href="<?=base_url('control/subcribe') ?>">
 	                <i class="flaticon-381-networking-1"></i>
-	                <span class="nav-text">Downline</span>
+	                <span class="nav-text">Subcribe	</span>
 	            </a>
 	        </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-					<i class="flaticon-381-network"></i>
-					<span class="nav-text">Transaction</span>
-				</a>
-                <ul aria-expanded="false">
-                    <li><a href="<?=base_url('transaction/daily') ?>">Daily Income</a></li>
-                    <li><a href="<?=base_url('transaction/referral') ?>">Referral Earnings</a></li>
-                    <li><a href="<?=base_url('transaction/reward') ?>">Reward</a></li>
-                    <li><a href="<?=base_url('transaction/withdrawal') ?>">Withdrawal</a></li>
-                </ul>
-            </li>
-            <li><a href="<?=base_url('ticket') ?>">
+	        <li><a href="<?=base_url('control/withdrawal') ?>">
+	                <i class="flaticon-381-networking-1"></i>
+	                <span class="nav-text">Withdrawal	</span>
+	            </a>
+	        </li>
+	        
+            <li><a href="<?=base_url('control/ticket') ?>">
 	                <i class="flaticon-381-price-tag"></i>
-	                <span class="nav-text">My Ticket</span>
+	                <span class="nav-text">Ticket</span>
 	            </a>
 	        </li>
-	        <li><a href="<?=base_url('bot') ?>">
+	        <li><a href="<?=base_url('control/sumary') ?>">
 	                <i class="flaticon-381-database"></i>
-	                <span class="nav-text">Bit Bot</span>
+	                <span class="nav-text">sumary</span>
 	            </a>
 	        </li>
         </ul>

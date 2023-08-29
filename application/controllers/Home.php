@@ -29,5 +29,22 @@ class Home extends CI_Controller
 		$roi = $paket->amount*(1/100);
 		echo $roi;
 	}
-	
+	public function ticket()
+	{
+		$data = [
+			'title'=>"Ticket",
+			'user'=>$this->db->get_where("members",['username'=>$this->session->userdata('username')])->row(),
+			'member'=>$this->db->like('created_at',date("Y-m-d"))->get("members")->result(),
+		];
+		$this->template->load("template",'ticket',$data);
+	}
+	public function not_found()
+	{
+		$data = [
+			'title'=>"404 Not Found",
+			'user'=>$this->db->get_where("members",['username'=>$this->session->userdata('username')])->row(),
+			'member'=>$this->db->like('created_at',date("Y-m-d"))->get("members")->result(),
+		];
+		$this->template->load("template",'not_found',$data);
+	}
 }

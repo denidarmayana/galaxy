@@ -58,5 +58,6 @@ $route['subcribe'] = 'package/subcribe';
 $route['confirmation'] = 'package/confirmation';
 $route['reff/(:any)'] = 'auth/reff';
 $route['activation'] = 'auth/activation';
-$route['404_override'] = '';
+$route['ticket'] = 'home/ticket';
+$route['404_override'] = 'home/not_found';
 $route['translate_uri_dashes'] = FALSE;

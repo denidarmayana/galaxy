@@ -30,7 +30,7 @@ class Package extends CI_Controller
 			redirect('forbiden');
 		}else{
 			$head = json_decode(verify_jwt($header));
-			$randomNumber = mt_rand(1000, 9999);
+			$randomNumber = mt_rand(100, 999);
 			$pk = $this->db->get_where("paket",['id'=>$this->input->post("paket")])->row();
 			$amount = $pk->amount+$randomNumber;
 			$save = $this->db->insert("subcribe",[
