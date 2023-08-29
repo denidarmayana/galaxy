@@ -19,7 +19,7 @@
 					<tbody>
 						<?php $no=0;
 						foreach ($subcribe as $key) { $no++;
-							$block = '<a href="" class="btn btn-info btn-xxs">Accept</a>';
+							$block = '<a href="'.base_url('activation?id='.$key->id).'" class="btn btn-info btn-xxs">Accept</a>';
 							echo "<tr>
 							<td>".$no."</td>
 							<td>".$key->name."</td>

@@ -39,19 +39,24 @@
 						if ($subcribe) {
 							$pkt = $this->db->get_where("paket",['id'=>$subcribe->paket])->row();
 							$harian = $pkt->amount*(1/100);
-							$tambah_hari = date('Y-m-d H:i:s', strtotime('+1 days', strtotime($subcribe->updated_at)));
-							$selisih = selisih_waktu($tambah_hari);
-							$bns_detik = $harian / (24*60*60);
-							$bns_jam = $harian / 24;
-							$bns_menis = $harian / (24*60);
-							$bns_now = ($bns_jam*$selisih->h)+($bns_menis*$selisih->i)+($bns_detik*$selisih->s);
+							$bns_hari = $harian/24;
+							$menitan = $bns_hari/60;
+							$detik = $menitan/60;
+							$cek_roi = $this->db->get_where("roi",['members'=>$user->username,'paket'=>$subcribe->paket])->num_rows();
+							if ($cek_roi == 0) {
+								$today = selisih_waktu($subcribe->updated_at);
+							}else{
+								$date_roi = date('Y-m-d H:i:s', strtotime('+'.$cek_roi.' days', strtotime($subcribe->updated_at)));
+								$today = selisih_waktu($date_roi);
+							}
+							$bns_now = ($bns_hari*$today->h)+($menitan*$today->i)+($detik*$today->s);
 							?>
-							<input type="hidden" value="<?=$bns_detik ?>" id="bns_detik">
-							<span id="roi"><?=number_format($bns_now,8,'.',',') ?></span>
+							<input type="hidden" value="<?=$detik ?>" id="bns_detik">
+							<span id="roi"><?=number_format($bns_now,8,'.',',') ?> MBIT</span>
 							
 						<?php }else{ ?>
 							<input type="hidden" value="0" id="bns_detik">
-							<span id="roi"><?=number_format(0.00000000,8,'.',',') ?></span>
+							<span id="roi"><?=number_format(0.00000000,8,'.',',') ?> MBIT</span>
 						<?php } ?>
 					</a>
 					<a class="btn btn-outline-warning btn-block mt-3 px-5" href="javascript:void(0)">

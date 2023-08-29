@@ -11,6 +11,7 @@ class Auth extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+		date_default_timezone_set("Asia/Jakarta");
 		$this->load->model("model_app",'app');
 	}
 	public function cek_token($id)
@@ -194,6 +195,8 @@ class Auth extends CI_Controller
 			}
 		}
 		//qualufued shapire
-		$this->db->update("subcribe",['status'=>1],['id'=>$_GET['id']]);
+		$this->db->update("subcribe",['status'=>1,'updated_at'=>date("Y-m-d H:i:s")],['id'=>$_GET['id']]);
+		$this->db->update("members",['status'=>1],['username'=>$subcribe->username]);
+		redirect("control/subcribe");
 	}
 }

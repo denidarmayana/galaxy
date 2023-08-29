@@ -59,5 +59,6 @@ $route['confirmation'] = 'package/confirmation';
 $route['reff/(:any)'] = 'auth/reff';
 $route['activation'] = 'auth/activation';
 $route['ticket'] = 'home/ticket';
+$route['profile'] = 'home/profile';
 $route['404_override'] = 'home/not_found';
 $route['translate_uri_dashes'] = FALSE;

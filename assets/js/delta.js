@@ -7,12 +7,69 @@ if (localStorage.getItem('token') == "") {
 	},60000)
 	
 }
-var total_bonus = $("#total_bonus").val();
-console.log(total_bonus)
-if (total_bonus == 0) {
-	$(".form").hide()
-	$(".notif").html("<div class='alert alert-danger'>You don't have anought balance</div>")
-}
+
+$("#btn_buy_ticket").click(function() {
+	var amount = $("#amount_ticket").val();
+	if (amount == "") {
+		toastr.error("amount can't be empty")
+	}else{
+		var settings = {
+		  "url": "./home/buy_ticket",
+		  "method": "POST",
+		  "timeout": 0,
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Authorization": localStorage.getItem('token')
+		  },
+		  "data": {
+		    "amount": amount,
+		  }
+		};
+
+		$.ajax(settings).done(function (response) {
+		  if (response.code == 200) {
+		  	toastr.info(response.message)
+		  	setTimeout(function() {
+		  		window.location.href="./ticket"
+		  	},1500)
+		  }else{
+		  	toastr.error(response.message)
+		  }
+		});
+	}
+	
+})
+$("#btn_usdt").click(function() {
+	var amount = $("#amount_usdt").val();
+	if (amount == "") {
+		toastr.error("amount can't be empty")
+	}else{
+		var settings = {
+		  "url": "./home/deposit",
+		  "method": "POST",
+		  "timeout": 0,
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Authorization": localStorage.getItem('token')
+		  },
+		  "data": {
+		    "amount": amount,
+		  }
+		};
+
+		$.ajax(settings).done(function (response) {
+		  if (response.code == 200) {
+		  	toastr.info(response.message)
+		  	setTimeout(function() {
+		  		window.location.href="./ticket"
+		  	},1500)
+		  }else{
+		  	toastr.error(response.message)
+		  }
+		});
+	}
+	
+})
 $("#amount").keyup(function() {
 	var amount = $(this).val();
 	if (total_bonus > 0 && total_bonus > amount) {
@@ -91,7 +148,7 @@ var roi = parseFloat($("#roi").html());
 var bns_detik = parseFloat($("#bns_detik").val());
 setInterval(function() {
 	roi += bns_detik
-	$('#roi').html( parseFloat(roi).toFixed(8) )
+	$('#roi').html( parseFloat(roi).toFixed(8)+" MBIT" )
 },1000)
 $(".link_ref").click(function() {
 	var link = $(".link_ref").html();

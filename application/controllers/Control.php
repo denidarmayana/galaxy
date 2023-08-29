@@ -68,4 +68,28 @@ class Control extends CI_Controller
 		];
 		$this->template->load("admin",'admin/widthdrawal',$data);
 	}
+	public function ticket()
+	{
+		$users = [
+			'name'=>'Administrator',
+			'email'=>'admin@galaxy7.tech'
+		];
+		$data = [
+			'title'=>"Widthdrawal",
+			'user'=>$users,
+			'deposit'=>$this->db->select('members.name,usdt.*')->order_by('usdt.id','desc')->join('members','members.username=usdt.members')->get("usdt")->result(),
+		];
+		$this->template->load("admin",'admin/ticket',$data);
+	}
+	
+	public function genrate()
+	{
+		for ($i=0; $i < 100; $i++) { 
+			$this->db->insert('ticket',[
+				'owner'=>'galaxy',
+				'code'=>$this->getRandomStr(9),
+				'created_at'=>date("Y-m-d")
+			]);
+		}
+	}
 }
