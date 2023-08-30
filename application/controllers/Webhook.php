@@ -11,7 +11,7 @@ class Webhook extends CI_Controller
 	}
 	public function daily()
 	{
-		$sub = $this->db->select('members.username,paket.amount,subcribe.updated_at')->join('members','members.username=subcribe.members')->join('paket','subcribe.paket=paket.id')->get("subcribe")->result();
+		$sub = $this->db->select('members.username,paket.amount,subcribe.updated_at')->join('members','members.username=subcribe.members')->join('paket','subcribe.paket=paket.id')->get_where("subcribe",['subcribe.status'=>1])->result();
 		echo json_encode($sub);
 		foreach ($sub as $key) {
 			$harian = $key->amount*(1/100);
