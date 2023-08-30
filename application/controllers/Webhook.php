@@ -13,11 +13,15 @@ class Webhook extends CI_Controller
 	public function daily()
 	{
 		$sub = $this->db->select('members.username,paket.amount,subcribe.updated_at')->join('members','members.username=subcribe.members')->join('paket','subcribe.paket=paket.id')->get_where("subcribe",['subcribe.status'=>1])->result();
-		echo json_encode(date("H:i:s"));
+		
 		foreach ($sub as $key) {
+
 			$harian = $key->amount*(1/100);
 			$waktu = explode(" ", $key->updated_at);
-			if (date("H:i:s") == $waktu[1] ) {
+			$menit = explode(":", $waktu[1]);
+			$waktu_save = $menit[0].":".$menit[1];
+			echo date("H:i")." - ".$waktu_save;
+			if (date("H:i") == $waktu_save ) {
 				$this->db->insert("roi",[
 					'members'=>$key->username,
 					'amount'=>$harian,
