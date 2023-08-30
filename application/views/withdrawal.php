@@ -80,6 +80,7 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 					<?php if ($wd_today->num_rows() == 0) { ?>
 					<input type="hidden" id="max_wd" value="<?=$max ?>">
 					<input type="hidden" id="min_wd" value="<?=$min ?>">
+					<input type="hidden" id="ticket" value="<?=$_GET['ticket'] ?>">
 					<div class="form-group">
 						<label class="mb-1"><strong>Amount</strong></label>
 						<input type="text" id="amount" class="form-control" placeholder="0">

@@ -8,6 +8,39 @@ if (localStorage.getItem('token') == "") {
 	
 }
 
+$("#btn_profile").click(function() {
+	var wallets = $("#wallets").val();
+	var password = $("#password").val();
+	if (wallets == "") {
+		toastr.error("Wallet address can't be empty")
+	}else{
+		var settings = {
+		  "url": "./home/update_profile",
+		  "method": "POST",
+		  "timeout": 0,
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Authorization": localStorage.getItem('token')
+		  },
+		  "data": {
+		    "wallet": wallets,
+		    "password": password
+		  }
+		};
+
+		$.ajax(settings).done(function (response) {
+		  if (response.code == 200) {
+		  	toastr.info(response.message)
+		  	setTimeout(function() {
+		  		window.location.href="./profile"
+		  	},1500)
+		  }else{
+		  	toastr.error(response.message)
+		  }
+		});
+	}
+	
+})
 $("#btn_buy_ticket").click(function() {
 	var amount = $("#amount_ticket").val();
 	if (amount == "") {
@@ -72,37 +105,36 @@ $("#btn_usdt").click(function() {
 })
 $("#amount").keyup(function() {
 	var amount = $(this).val();
-	if (total_bonus > 0 && total_bonus > amount) {
-		var fee =  parseInt(amount)*(10/100)
-		var net = parseInt(amount) - parseInt(fee)
-		var max = $("#max_wd").val();
-		var min = $("#min_wd").val();
-		$("#act_wd").attr("disabled", true);
+	var fee =  parseInt(amount)*(10/100)
+	var net = parseInt(amount) - parseInt(fee)
+	var max = $("#max_wd").val();
+	var min = $("#min_wd").val();
+	$("#act_wd").attr("disabled", true);
+	if (amount.length > 0) {
 		$("#fee").val(fee);
 		$("#net").val(net);
-		setTimeout(function() {
-			if (amount > max) {
-				toastr.error("Your maximum withdrawal is "+max+" MBIT")
-				$("#amount").val("")
-				$("#net").val("")
-				$("#fee").val("")
-				$("#amount").focus()
-				$("#act_wd").attr("disabled", true);
-			}else{
-				$("#act_wd").attr("disabled", false);
-			}
-		},1500)	
 	}else{
-		$("#amount").attr("readonly",true)
-		toastr.error("Your balance is "+ parseInt(total_bonus).toFixed(8) +" MBIT")
+		$("#fee").val("");
+		$("#net").val("");
 	}
-	
-	console.log(amount,fee,net,max,min)
+	if (amount.length == max.length) {
+		if (amount > max) {
+			toastr.error("Your maximum withdrawal is "+max+" MBIT")
+			$("#amount").val("")
+			$("#net").val("")
+			$("#fee").val("")
+			$("#amount").focus()
+			$("#act_wd").attr("disabled", true);
+		}else{
+			$("#act_wd").attr("disabled", false);
+		}
+	}
 })
 $("#act_wd").click(function() {
 	var amount = $("#amount").val();
 	var fee =  $("#fee").val();
 	var net = $("#net").val();
+	var ticket = $("#ticket").val();
 	var settings = {
 	  "url": "./act_wd",
 	  "method": "POST",
@@ -115,6 +147,7 @@ $("#act_wd").click(function() {
 	    "amount": amount,
 	    "fee": fee,
 	    "net": net,
+	    "tiket":ticket,
 	  }
 	};
 

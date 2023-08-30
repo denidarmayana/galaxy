@@ -13,8 +13,8 @@
 									<img alt="image" width="45" src="<?=base_url() ?>assets/logo.png">
 								</div>
 								<div class="media-body">
-									<h5 class="mb-1"><?=$key->amount ?> </h5>
-									<small class="d-block">From : <?=$key->from ?>, at : <?=$key->created_at ?></small>
+									<h5 class="mb-1"><?=number($key->amount) ?> MBIT</h5>
+									<small class="d-block">at : <?=$key->created_at ?></small>
 								</div>
 							</div>
 						</li>

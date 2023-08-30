@@ -21,11 +21,11 @@
 					</div>
 					<div class="form-group">
 						<label class="mb-1"><strong>Wallet Address</strong></label>
-						<input type="text" id="wallets" class="form-control" placeholder="Ypur Wallet Address" value="<?=$user->wallet ?>" >
+						<input type="text" id="wallets" class="form-control" placeholder="Your Wallet Address" value="<?=$user->wallet ?>" >
 					</div>
 					<div class="form-group">
 						<label class="mb-1"><strong>Update Password</strong></label>
-						<input type="password" id="wallet" class="form-control" placeholder="New Password" >
+						<input type="password" id="password" class="form-control" placeholder="New Password" >
 					</div>
 					<div class="text-center">
 						<button type="button" id="btn_profile" class="btn btn-primary btn-block">Update Profile</button>

@@ -34,8 +34,8 @@
 			</div>
 			<div class="card-body">
 				<?php 
-				$today = $this->db->select_sum("paket.amount")->join('paket','subcribe.paket=paket.id')->like('subcribe.created_at',date("Y-m-d"))->get("subcribe")->row();
-				$total = $this->db->select_sum("paket.amount")->join('paket','subcribe.paket=paket.id')->get("subcribe")->row(); ?>
+				$today = $this->db->select_sum("paket.amount")->join('paket','subcribe.paket=paket.id')->like('subcribe.created_at',date("Y-m-d"))->get_where("subcribe",['subcribe.status'=>1])->row();
+				$total = $this->db->select_sum("paket.amount")->join('paket','subcribe.paket=paket.id')->get_where("subcribe",['subcribe.status'=>1])->row(); ?>
 				<div id="DZ_W_Todo1" class="widget-media dz-scroll">
 					<ul class="timeline">
 						<li>

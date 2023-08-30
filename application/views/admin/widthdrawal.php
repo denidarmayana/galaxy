@@ -11,21 +11,26 @@
 							<th>No</th>
 							<th>Name</th>
 							<th>Amount</th>
-							<th>Hash</th>
+							<th>Fee</th>
+							<th>Net</th>
 							<th>Status</th>
+							<th>Wallet Rerecved</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php $no=0;
 						foreach ($widthdrawal as $key) { $no++;
+							$m = $this->db->get_where("members",['username'=>$key->members])->row();
 							$block = '<a href="" class="btn btn-info btn-xxs">Accept</a>';
 							echo "<tr>
 							<td>".$no."</td>
 							<td>".$key->name."</td>
 							<td>".number($key->amount)." MBIT</td>
-							<td>".$key->hash."</td>
+							<td>".number($key->fee)." MBIT</td>
+							<td>".number($key->net)." MBIT</td>
 							<td>".($key->status == 1 ? "Success" : "Pending")."</td>
+							<td>".$m->wallet."</td>
 							<td>".($key->status == 1 ? "" : $block)."</td>
 							</tr>";
 						}

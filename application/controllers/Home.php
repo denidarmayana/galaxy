@@ -98,4 +98,16 @@ class Home extends CI_Controller
 			json_error("Buy Ticket failed",null);
 		}
 	}
+	public function update_profile()
+	{
+		jsons();
+		$data = $this->input->post();
+		$username = $this->session->userdata("username");
+		if ($data['password'] == "") {
+			$this->db->update("members",['wallet'=>$data['wallet']],['username'=>$username]);
+		}else{
+			$this->db->update("members",['wallet'=>$data['wallet'],'password'=>password_hash($data['password'], PASSWORD_DEFAULT)],['username'=>$username]);
+		}
+		json_success("Update Profile is successful",null);
+	}
 }

@@ -64,6 +64,7 @@ class Transaction extends CI_Controller
 			'created_at'=>date("Y-m-d H:i:s")
 		]);
 		if ($save) {
+			$this->db->update("code_ticket",['status'=>1],['ticket'=>$this->input->post("tiket")]);
 			json_success("Withdrawal data successfully entered the queue",null);
 		}else{
 			json_error("Withdrawal data failed to enter the queue",null);
