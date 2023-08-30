@@ -19,6 +19,9 @@
 				<h3 class="card-title">Deposit & Withdrawal</h3>
 			</div>
 			<div class="card-body">
+				<p>for usdt deposits, please send your coins to the wallet address below</p>
+				<p class="text-success font-w600 text-center m-0">0x3f7Daa26CEA77793805c7A133f214007E058Ef8E</p>
+				<p class="text-success font-w600 text-center m-0">BEP20</p>
 				<div id="loading" style="display: none;">
 					<center>
 						<i class="fa fa-redo fa-spin fa-5x text-warning"></i>
