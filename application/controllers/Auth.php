@@ -32,8 +32,18 @@ class Auth extends CI_Controller
 	}
 	public function register()
 	{
+		if ($this->session->flashdata("upline")) {
+			$cek = $this->db->get_where("subcribe",['members'=>$this->session->flashdata("upline"),'status'=>1])->num_rows();
+			if ($cek > 0) {
+				$upline = $this->session->flashdata("upline");
+			}else{
+				$upline = "galaxy";
+			}
+		}else{
+			$upline = "galaxy";
+		}
 		$data = [
-			'reff'=>($this->session->flashdata("upline") ? $this->session->flashdata("upline") : "galaxy")
+			'reff'=>$upline
 		];
 		$this->load->view("register",$data);
 	}
