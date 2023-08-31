@@ -1,3 +1,9 @@
+<?php 
+if (isset($_GET['del'])) {
+	$save = $this->db->delete("subcribe",['id'=>$_GET['del']]);
+	redirect("control/subcribe");
+} 
+?>
 <div class="row">
 	<div class="col-sm-12 col-12">
 		<div class="card">
@@ -19,7 +25,7 @@
 					<tbody>
 						<?php $no=0;
 						foreach ($subcribe as $key) { $no++;
-							$block = '<a href="'.base_url('activation?id='.$key->id).'" class="btn btn-info btn-xxs">Accept</a>';
+							$block = '<a href="'.base_url('activation?id='.$key->id).'" class="btn btn-info btn-xxs">Accept</a>&nbsp;&nbsp; <a href="?del='.$key->id.'" class="btn btn-danger btn-xxs">Cancle</a>';
 							echo "<tr>
 							<td>".$no."</td>
 							<td>".$key->name."</td>
