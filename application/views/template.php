@@ -122,7 +122,12 @@
     <div class="deznav-scroll">
 		<div class="main-profile">
 			<div class="image-bx">
-				<img src="<?=base_url('') ?>assets/images/avatar/1.png" alt="">
+				<?php if ($user->position == 0) { ?>
+                            <img src="<?=base_url('') ?>assets/images/avatar/1.png" width="20" alt=""/>
+                        <?php } else{                        	
+                        	$position= $this->db->get_where('peringkat',['id'=>$user->position])->row();
+                        	echo '<img src="'.base_url('').'assets/position/'.$position->name.'.png" width="20" alt=""/>';
+                        } ?>
 				<a href="javascript:void(0);"><i class="fa fa-cog" aria-hidden="true"></i></a>
 			</div>
 			<h5 class="name"><span class="font-w400">Hello,</span> <?=$user->name ?></h5>
