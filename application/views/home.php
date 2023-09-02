@@ -21,7 +21,7 @@
 				<div class="text-center">
 					<div class="profile-photo">
 						<?php if ($user->position == 0) { ?>
-                            <img src="<?=base_url('') ?>assets/images/avatar/1.png" width="20" alt=""/>
+                            <img src="<?=base_url('') ?>assets/images/avatar/1.png" width="100" alt=""/>
                         <?php } else{                        	
                         	$position= $this->db->get_where('peringkat',['id'=>$user->position])->row();
                         	echo '<img src="'.base_url('').'assets/position/'.$position->name.'.png" width="20" alt=""/>';
