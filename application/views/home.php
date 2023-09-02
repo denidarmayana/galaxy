@@ -24,7 +24,7 @@
                             <img src="<?=base_url('') ?>assets/images/avatar/1.png" width="100" alt=""/>
                         <?php } else{                        	
                         	$position= $this->db->get_where('peringkat',['id'=>$user->position])->row();
-                        	echo '<img src="'.base_url('').'assets/position/'.$position->name.'.png" width="20" alt=""/>';
+                        	echo '<img src="'.base_url('').'assets/position/'.$position->name.'.png" width="100" alt=""/>';
                         } ?>
 					</div>
 					<h3 class="mt-4 mb-1"><?=$user->name ?></h3>
