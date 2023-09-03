@@ -41,6 +41,42 @@ $("#btn_profile").click(function() {
 	}
 	
 })
+$("#btn_profile_control").click(function() {
+	var wallets = $("#wallets_control").val();
+	var password = $("#password_control").val();
+	var id = $("#id_profiles").val();
+	if (wallets == "") {
+		toastr.error("Wallet address can't be empty")
+	}else{
+		var settings = {
+		  "url": "./update_profile",
+		  "method": "POST",
+		  "timeout": 0,
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Authorization": localStorage.getItem('token')
+		  },
+		  "data": {
+		    "wallet": wallets,
+		    "password": password,
+		    'id':id,
+		  }
+		};
+
+		$.ajax(settings).done(function (response) {
+			console.log(response);
+		  if (response.code == 200) {
+		  	toastr.info(response.message)
+		  	setTimeout(function() {
+		  		window.location.href="./members"
+		  	},1500)
+		  }else{
+		  	toastr.error(response.message)
+		  }
+		});
+	}
+	
+})
 $("#btn_buy_ticket").click(function() {
 	var amount = $("#amount_ticket").val();
 	if (amount == "") {
@@ -87,6 +123,37 @@ $("#btn_usdt").click(function() {
 		  },
 		  "data": {
 		    "amount": amount,
+		  }
+		};
+
+		$.ajax(settings).done(function (response) {
+		  if (response.code == 200) {
+		  	toastr.info(response.message)
+		  	setTimeout(function() {
+		  		window.location.href="./ticket"
+		  	},1500)
+		  }else{
+		  	toastr.error(response.message)
+		  }
+		});
+	}
+	
+})
+$("#btn_usdt_hash").click(function() {
+	var amount = $("#amount_usdt_hash").val();
+	if (amount == "") {
+		toastr.error("hash transaction can't be empty")
+	}else{
+		var settings = {
+		  "url": "./home/conf_deposit",
+		  "method": "POST",
+		  "timeout": 0,
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Authorization": localStorage.getItem('token')
+		  },
+		  "data": {
+		    "hash": amount,
 		  }
 		};
 

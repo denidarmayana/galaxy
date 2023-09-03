@@ -1,3 +1,8 @@
+<?php
+if (isset($_GET['id'])) {
+	$this->db->update("widthdrawal",['status'=>1],['id'=>$_GET['id']]);
+	redirect("control/withdrawal");
+} ?>
 <div class="row">
 	<div class="col-sm-12 col-12">
 		<div class="card">
@@ -22,7 +27,7 @@
 						<?php $no=0;
 						foreach ($widthdrawal as $key) { $no++;
 							$m = $this->db->get_where("members",['username'=>$key->members])->row();
-							$block = '<a href="" class="btn btn-info btn-xxs">Accept</a>';
+							$block = '<a href="?id='.$key->id.'" class="btn btn-info btn-xxs">Accept</a>';
 							echo "<tr>
 							<td>".$no."</td>
 							<td>".$key->name."</td>

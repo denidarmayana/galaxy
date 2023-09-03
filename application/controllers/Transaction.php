@@ -56,18 +56,24 @@ class Transaction extends CI_Controller
 	public function act_wd()
 	{
 		jsons();
-		$save = $this->db->insert("widthdrawal",[
-			'members'=>$this->session->userdata("username"),
-			'amount'=>$this->input->post("amount"),
-			'fee'=>$this->input->post("fee"),
-			'net'=>$this->input->post("net"),
-			'created_at'=>date("Y-m-d H:i:s")
-		]);
-		if ($save) {
-			$this->db->update("code_ticket",['status'=>1],['ticket'=>$this->input->post("tiket")]);
-			json_success("Withdrawal data successfully entered the queue",null);
+		$user = $this->db->get_where("members",['username'=>$this->session->userdata('username')])->row();
+		if ($user->wallet == "") {
+			json_error("Pleace insert your wallet address",null);
 		}else{
-			json_error("Withdrawal data failed to enter the queue",null);
+			$save = $this->db->insert("widthdrawal",[
+				'members'=>$this->session->userdata("username"),
+				'amount'=>$this->input->post("amount"),
+				'fee'=>$this->input->post("fee"),
+				'net'=>$this->input->post("net"),
+				'created_at'=>date("Y-m-d H:i:s")
+			]);
+			if ($save) {
+				$this->db->update("code_ticket",['status'=>1],['ticket'=>$this->input->post("tiket")]);
+				json_success("Withdrawal data successfully entered the queue",null);
+			}else{
+				json_error("Withdrawal data failed to enter the queue",null);
+			}
 		}
+		
 	}
 }

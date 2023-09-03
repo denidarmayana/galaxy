@@ -3,6 +3,10 @@ if (isset($_GET['id'])) {
 	$this->db->update("usdt",['status'=>1],['id'=>$_GET['id']]);
 	redirect("control/ticket");
 }
+if (isset($_GET['del'])) {
+	$this->db->delete("usdt",['id'=>$_GET['del']]);
+	redirect("control/ticket");
+}
 ?>
 <div class="row">
 	<div class="col-sm-12 col-12">
@@ -17,6 +21,7 @@ if (isset($_GET['id'])) {
 							<th>No</th>
 							<th>Members</th>
 							<th>Amount</th>
+							<th>Hash</th>
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
@@ -25,7 +30,7 @@ if (isset($_GET['id'])) {
 						<?php $no=0;
 						foreach ($deposit as $key) { $no++;
 							if ($key->status == 0) {
-								$btn = '<a href="?id='.$key->id.'" class="btn btn-xxs btn-primary">Accept</a>';
+								$btn = '<a href="?id='.$key->id.'" class="btn btn-xxs btn-primary">Accept</a> <a href="?del='.$key->id.'" class="btn btn-xxs btn-danger">reject</a>';
 							}else{
 								$btn = '<a href="" class="btn btn-xxs btn-outline-success">Success</a>';
 							}
@@ -33,6 +38,7 @@ if (isset($_GET['id'])) {
 							<td>".$no."</td>
 							<td>".$key->name."</td>
 							<td>".$key->amount." USDT</td>
+							<td>".$key->hash."</td>
 							<td>".($key->status == 1 ? "Done" : "Pending")."</td>
 							<td>".$btn."</td>
 							</tr>";

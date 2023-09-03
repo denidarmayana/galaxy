@@ -36,6 +36,7 @@ class Home extends CI_Controller
 			'user'=>$this->db->get_where("members",['username'=>$this->session->userdata('username')])->row(),
 			'balance'=>$this->db->select_sum('amount')->get_where('usdt',['members'=>$this->session->userdata('username'),'status'=>1])->row(),
 			'ticket'=>$this->db->get_where("code_ticket",['members'=>$this->session->userdata('username'),'status'=>0])->result(),
+			'usdt'=>$this->db->get_where("usdt",['members'=>$this->session->userdata('username'),'status'=>0])->row(),
 		];
 		$this->template->load("template",'ticket',$data);
 	}
@@ -61,6 +62,16 @@ class Home extends CI_Controller
 	{
 		jsons();
 		$save = $this->db->insert("usdt",['amount'=>$this->input->post('amount'),'members'=>$this->session->userdata("username")]);
+		if ($save) {
+			json_success("Deposit USDT is successful",null);
+		}else{
+			json_error("Deposit USDT failed",null);
+		}
+	}
+	public function conf_deposit()
+	{
+		jsons();
+		$save = $this->db->update("usdt",['hash'=>$this->input->post('hash')],['members'=>$this->session->userdata("username")]);
 		if ($save) {
 			json_success("Deposit USDT is successful",null);
 		}else{

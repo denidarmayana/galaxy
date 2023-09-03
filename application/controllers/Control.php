@@ -92,4 +92,15 @@ class Control extends CI_Controller
 			]);
 		}
 	}
+	public function update_profile()
+	{
+		jsons();
+		$data = $this->input->post();
+		if ($data['password'] == "") {
+			$this->db->update("members",['wallet'=>$data['wallet']],['id'=>$data['id']]);
+		}else{
+			$this->db->update("members",['wallet'=>$data['wallet'],'password'=>password_hash($data['password'], PASSWORD_DEFAULT)],['id'=>$data['id']]);
+		}
+		json_success("Update Profile is successful",null);
+	}
 }

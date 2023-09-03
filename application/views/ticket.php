@@ -47,6 +47,17 @@
 						<i class="fa fa-redo fa-spin fa-5x text-warning"></i>
 					</center>
 				</div>
+				<?php if ($usdt && $usdt->hash == "") { ?>
+				<div class="col-depo-usdt">
+					<div class="form-group">
+						<label class="mb-1"><strong>Hash USDT Transaction</strong></label>
+						<input type="text" id="amount_usdt_hash" class="form-control" placeholder="hast_transaction" >
+					</div>
+					<div class="text-center">
+						<button type="button" id="btn_usdt_hash" class="btn btn-success btn-block">Confirmation</button>
+					</div>
+				</div>
+			<?php } else { ?>
 				<div class="col-depo-usdt">
 					<div class="form-group">
 						<label class="mb-1"><strong>Amount</strong></label>
@@ -56,6 +67,7 @@
 						<button type="button" id="btn_usdt" class="btn btn-primary btn-block">Submit</button>
 					</div>
 				</div>
+			<?php } ?>
 				<?php if ($balance->amount > 7) { ?>
 					
 					<div class="mt-5">
@@ -74,10 +86,10 @@
 	<div class="col-sm-4 col-12">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">My Ticket</h3>
+				<h3 class="card-title">Buy Ticket</h3>
 			</div>
 			<div class="card-body">
-				<?php if ($balance->amount > 7) { ?>
+				<?php if ($balance->amount >= 7) { ?>
 					<div class="form-group">
 						<label class="mb-1"><strong>Buy Ticket</strong></label>
 						<input type="text" id="amount_ticket" class="form-control" placeholder="0" >
@@ -86,7 +98,8 @@
 						<button type="button" id="btn_buy_ticket" class="btn btn-info btn-block">Buy</button>
 					</div>
 				<?php } ?>
-				<h4 class="mt-4">My Ticket</h3>
+				<hr>
+				<h4 class="mb-2 mt-0">My Ticket</h4>
 				<ul>
 				<?php
 				foreach ($ticket as $key) {
