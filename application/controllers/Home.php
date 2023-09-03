@@ -81,7 +81,21 @@ class Home extends CI_Controller
 	{
 		jsons();
 		$username = $this->session->userdata("username");
-		$usdt = $this->input->post("amount")*7;
+		$user = $this->db->get_where("members",['username'=>$this->session->userdata('username')])->row();
+		switch ($user->position) {
+			case 0:
+				$usdt = $this->input->post("amount")*7;
+			case 1:
+				$usdt = $this->input->post("amount")*6;
+			case 2:
+				$usdt = $this->input->post("amount")*5;
+			case 3:
+				$usdt = $this->input->post("amount")*4;
+			case 4:
+				$usdt = $this->input->post("amount")*3;
+			
+		}
+		
 		$saldo = $this->db->select_sum('amount')->get_where("usdt",['members'=>$username,'status'=>1])->row();
 		$sisa_saldo = $saldo->amount-$usdt;
 		$this->db->update('usdt',['amount'=>$sisa_saldo],['members'=>$username]);

@@ -59,7 +59,12 @@
 						1% Per Day
 					</p>
 					<input type="hidden" class="paket<?=$key->id ?>" value="<?=$key->id ?>">
-					<button class="btn btn-primary btn-block mt-3 subcribe<?=$key->id ?>">Subcribe</button>
+					<?php if ($subcribe->paket < $key->id) { ?>
+						<button class="btn btn-primary btn-block mt-3 subcribe<?=$key->id ?>">Upgrade</button>
+					<?php }else { ?>
+						<button class="btn btn-primary btn-block mt-3 subcribe<?=$key->id ?>" disabled >Subcribed</button>
+					<?php } ?>
+					
 				</div>
 			</div>
 		</div>

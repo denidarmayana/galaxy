@@ -6,7 +6,27 @@
 			</div>
 			<div class="card-body">
 				<p>To be able to make a bonus withdrawal, you must have a ticket for bonus withdrawals</p>
-				<p>To get a bonus drawing ticket, you must buy it at a price of <span class="font-w600 text-success">7 USDT</span> for one ticket, and is valid for one time use</p>
+				<p>To get a bonus drawing ticket, you must buy it at a price of 
+					<?php 
+					switch ($user->position) {
+						case 0:
+							echo '<span class="font-w600 text-success">7 USDT</span>';
+							break;
+						case 1:
+							echo '<span class="font-w600 text-success">6 USDT</span>';
+							break;
+						case 2:
+							echo '<span class="font-w600 text-success">5 USDT</span>';
+							break;
+						case 3:
+							echo '<span class="font-w600 text-success">4 USDT</span>';
+							break;
+						case 4:
+							echo '<span class="font-w600 text-success">3 USDT</span>';
+							break;
+					}
+					 ?>
+				for one ticket, and is valid for one time use</p>
 			</div>
 			<div class="card-footer">
 				<h4 class="card-title">Balance <span class="float-end text-success"><?=number($balance->amount) ?> USDT</span> </h4>
