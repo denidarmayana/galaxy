@@ -32,7 +32,7 @@ if (isset($_GET['del'])) {
 							if ($key->status == 0) {
 								$btn = '<a href="?id='.$key->id.'" class="btn btn-xxs btn-primary">Accept</a> <a href="?del='.$key->id.'" class="btn btn-xxs btn-danger">reject</a>';
 							}else{
-								$btn = '<a href="" class="btn btn-xxs btn-outline-success">Success</a>';
+								$btn = '<a href="" class="btn btn-xxs btn-outline-success">Success</a>&nbsp;&nbsp; <a href="?del='.$key->id.'" class="btn btn-xxs btn-outline-danger">Delete</a>';
 							}
 							echo "<tr>
 							<td>".$no."</td>
