@@ -41,7 +41,7 @@ class Webhook extends CI_Controller
 		}
 		
 		$count_manager = $this->db->get_where("members",['position'=>1])->num_rows();
-		$reward_manager = $amount_omset*(2.5/100);
+		$reward_manager = $amount_omset*(0.25/100);
 		$amount_manager = $reward_manager/$count_manager;
 		$manager = $this->db->get_where("members",['position'=>1])->result();
 		foreach ($manager as $m) {
@@ -55,7 +55,6 @@ class Webhook extends CI_Controller
 						'updated_at'=>$dates." 23:59:00"
 					]);
 				}
-				
 			}
 			
 		}
