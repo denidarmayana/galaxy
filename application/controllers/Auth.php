@@ -155,7 +155,7 @@ class Auth extends CI_Controller
 				if ($row_manager->count == 5) {
 					$cek_manager = $this->db->get_where("subcribe",['members'=>$active_paket->upline,'paket'=>2])->row();
 					if ($cek_manager) {
-						$this->db->update("members",['position'=>1],['username'=>$active_paket->upline]);
+						$this->db->update("members",['position'=>1,'updated_at'=>date("Y-m-d H:i:s")],['username'=>$active_paket->upline]);
 					}	
 				}
 			}
@@ -177,7 +177,7 @@ class Auth extends CI_Controller
 				if ($row_shapire->count == 5) {
 					$cek_shapire = $this->db->get_where("subcribe",['members'=>$active_paket->upline,'paket'=>3])->row();
 					if ($cek_shapire) {
-						$this->db->update("members",['position'=>2],['username'=>$active_paket->upline]);
+						$this->db->update("members",['position'=>2,'updated_at'=>date("Y-m-d H:i:s")],['username'=>$active_paket->upline]);
 					}	
 				}
 			}
@@ -199,7 +199,7 @@ class Auth extends CI_Controller
 				if ($row_ruby->count == 5) {
 					$cek_ruby = $this->db->get_where("subcribe",['members'=>$active_paket->upline,'paket'=>4])->row();
 					if ($cek_ruby) {
-						$this->db->update("members",['position'=>3],['username'=>$active_paket->upline]);
+						$this->db->update("members",['position'=>3,'updated_at'=>date("Y-m-d H:i:s")],['username'=>$active_paket->upline]);
 					}		
 				}
 			}

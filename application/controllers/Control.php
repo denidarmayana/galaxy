@@ -103,4 +103,16 @@ class Control extends CI_Controller
 		}
 		json_success("Update Profile is successful",null);
 	}
+	public function sumary()
+	{
+		$users = [
+			'name'=>'Administrator',
+			'email'=>'admin@galaxy7.tech'
+		];
+		$data = [
+			'title'=>"Sumary",
+			'user'=>$users,
+		];
+		$this->template->load("admin",'admin/sumary',$data);
+	}
 }

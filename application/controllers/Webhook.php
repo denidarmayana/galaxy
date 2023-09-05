@@ -30,5 +30,35 @@ class Webhook extends CI_Controller
 				]);
 			}
 		}
+		//ROI
+
+		$dates = date("Y-m-d");
+		$omset = $this->db->like('updated_at',$dates)->get("subcribe")->result();
+		$amount_omset=0;
+		foreach ($omset as $om) {
+			$p = $this->db->get_where("paket",['id'=>$om->paket])->row();
+			$amount_omset +=$p->amount;
+		}
+		
+		$count_manager = $this->db->get_where("members",['position'=>1])->num_rows();
+		$reward_manager = $amount_omset*(2.5/100);
+		$amount_manager = $reward_manager/$count_manager;
+		$manager = $this->db->get_where("members",['position'=>1])->result();
+		foreach ($manager as $m) {
+			$cek = $this->db->like('created_at',$dates)->get_where("reward",['members'=>$m->username])->num_rows();
+			if ($cek == 0) {
+				if (date("H:i:s") == "23:59:00") {
+					$this->db->insert("reward",[
+						'members'=>$m->username,
+						'amount'=>$amount_manager,
+						'created_at'=>$dates." 23:59:00",
+						'updated_at'=>$dates." 23:59:00"
+					]);
+				}
+				
+			}
+			
+		}
+		//manager
 	}
 }
