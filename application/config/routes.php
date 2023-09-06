@@ -58,6 +58,7 @@ $route['subcribe'] = 'package/subcribe';
 $route['confirmation'] = 'package/confirmation';
 $route['reff/(:any)'] = 'auth/reff';
 $route['activation'] = 'auth/activation';
+$route['transaction/deposit-usdt'] = 'transaction/deposit_usdt';
 $route['ticket'] = 'home/ticket';
 $route['profile'] = 'home/profile';
 $route['404_override'] = 'home/not_found';

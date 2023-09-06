@@ -53,6 +53,16 @@ class Transaction extends CI_Controller
 		];
 		$this->template->load("template",'withdrawal',$data);
 	}
+	public function deposit_usdt()
+	{
+		$data = [
+			'title'=>"Dashboard",
+			'user'=>$this->db->get_where("members",['username'=>$this->session->userdata('username')])->row(),
+			'usdt'=>$this->db->get_where("usdt",['members'=>$this->session->userdata('username')])->result(),
+			
+		];
+		$this->template->load("template",'deposit_usdt',$data);
+	}
 	public function act_wd()
 	{
 		jsons();

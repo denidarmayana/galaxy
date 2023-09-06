@@ -110,11 +110,12 @@ $("#btn_buy_ticket").click(function() {
 })
 $("#btn_usdt").click(function() {
 	var amount = $("#amount_usdt").val();
+
 	if (amount == "") {
 		toastr.error("amount can't be empty")
 	}else{
 		var settings = {
-		  "url": "./home/deposit",
+		  "url": "../home/deposit",
 		  "method": "POST",
 		  "timeout": 0,
 		  "headers": {
@@ -130,7 +131,7 @@ $("#btn_usdt").click(function() {
 		  if (response.code == 200) {
 		  	toastr.info(response.message)
 		  	setTimeout(function() {
-		  		window.location.href="./ticket"
+		  		window.location.href="./deposit-usdt"
 		  	},1500)
 		  }else{
 		  	toastr.error(response.message)
@@ -141,11 +142,12 @@ $("#btn_usdt").click(function() {
 })
 $("#btn_usdt_hash").click(function() {
 	var amount = $("#amount_usdt_hash").val();
+	var id = $("#id_usdt_hash").val();
 	if (amount == "") {
 		toastr.error("hash transaction can't be empty")
 	}else{
 		var settings = {
-		  "url": "./home/conf_deposit",
+		  "url": "../home/conf_deposit",
 		  "method": "POST",
 		  "timeout": 0,
 		  "headers": {
@@ -154,6 +156,7 @@ $("#btn_usdt_hash").click(function() {
 		  },
 		  "data": {
 		    "hash": amount,
+		    "id":id
 		  }
 		};
 
@@ -161,7 +164,7 @@ $("#btn_usdt_hash").click(function() {
 		  if (response.code == 200) {
 		  	toastr.info(response.message)
 		  	setTimeout(function() {
-		  		window.location.href="./ticket"
+		  		window.location.href="./deposit-usdt"
 		  	},1500)
 		  }else{
 		  	toastr.error(response.message)

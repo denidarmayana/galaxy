@@ -75,7 +75,12 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 				<h3 class="card-title">Withdrawal Form</h3>
 			</div>
 			<div class="card-body">
-				<?php if (isset($_GET['ticket'])) { ?>
+				<?php if (isset($_GET['ticket'])) { 
+					$cek = $this->db->get_where("code_ticket",['ticket'=>$_GET['ticket']])->row();
+					if ($cek->members != $this->session->userdata("username")) {
+						reditect("sign-out");
+					}
+				?>
 				<div class="form">
 					<?php if ($wd_today->num_rows() == 0) { ?>
 					<input type="hidden" id="max_wd" value="<?=$max ?>">

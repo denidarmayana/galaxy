@@ -37,6 +37,7 @@ class Home extends CI_Controller
 			'balance'=>$this->db->select_sum('amount')->get_where('usdt',['members'=>$this->session->userdata('username'),'status'=>1])->row(),
 			'ticket'=>$this->db->get_where("code_ticket",['members'=>$this->session->userdata('username'),'status'=>0])->result(),
 			'usdt'=>$this->db->get_where("usdt",['members'=>$this->session->userdata('username'),'status'=>0])->row(),
+			'buy'=>$this->db->select_sum('total')->get_where("ticket",['members'=>$this->session->userdata('username')])->row(),
 		];
 		$this->template->load("template",'ticket',$data);
 	}
@@ -71,7 +72,7 @@ class Home extends CI_Controller
 	public function conf_deposit()
 	{
 		jsons();
-		$save = $this->db->update("usdt",['hash'=>$this->input->post('hash')],['members'=>$this->session->userdata("username")]);
+		$save = $this->db->update("usdt",['hash'=>$this->input->post('hash')],['id'=>$this->input->post('id')]);
 		if ($save) {
 			json_success("Deposit USDT is successful",null);
 		}else{
@@ -95,33 +96,70 @@ class Home extends CI_Controller
 		$user = $this->db->get_where("members",['username'=>$this->session->userdata('username')])->row();
 		switch ($user->position) {
 			case 0:
-				$usdt = $this->input->post("amount")*7;
+				$usdt = 7;
+				break;
 			case 1:
-				$usdt = $this->input->post("amount")*6;
+				$usdt = 6;
+				break;
 			case 2:
-				$usdt = $this->input->post("amount")*5;
+				$usdt = 5;
+				break;
 			case 3:
-				$usdt = $this->input->post("amount")*4;
+				$usdt = 4;
+				break;
 			case 4:
-				$usdt = $this->input->post("amount")*3;
+				$usdt = 3;
+				break;
+			case 5:
+				$usdt = 2;
+				break;
+			case 6:
+				$usdt = 1;
+				break;
 			
 		}
-		
-		$saldo = $this->db->select_sum('amount')->get_where("usdt",['members'=>$username,'status'=>1])->row();
-		$sisa_saldo = $saldo->amount-$usdt;
-		$this->db->update('usdt',['amount'=>$sisa_saldo],['members'=>$username]);
-		$save = $this->db->insert("ticket",['count'=>$this->input->post('amount'),'members'=>$username,'status'=>1]);
-		if ($save) {
-			for ($i=0; $i < $this->input->post('amount') ; $i++) { 
-				$this->db->insert('code_ticket',[
-					'members'=>$username,
-					'ticket'=>$this->getRandomStr(9)
-				]);
+		$saldo = $this->db->select_sum("amount")->get_where('usdt',['members'=>$username,'status'=>1])->row();
+		$harga = $this->input->post('amount')*$usdt;
+		if ($saldo->amount > $harga) {
+			$save = $this->db->insert("ticket",['count'=>$this->input->post('amount'),'members'=>$username,'status'=>1]);
+			$cek_tiket_upline = $this->db->join('members','members.username=code_ticket.members')->get_where("code_ticket",['code_ticket.members'=>$user->upline,'members.position'=>1])->row();
+			$count_cek_tiket_upline = $this->db->get_where("code_ticket",['members'=>$user->upline])->num_rows();
+			if ($cek_tiket_upline) {
+				if ($count_cek_tiket_upline > $this->input->post('amount')) {
+					$sisa = 0;
+					for ($i=0; $i < $this->input->post('amount') ; $i++) { 
+						$this->db->update('code_ticket',['receiver'=>$username,'send'=>1],['members'=>$user->upline,'send'=>0]);
+					}
+				}else if ($count_cek_tiket_upline == $this->input->post('amount')){
+					$sisa = 0;
+					for ($i=0; $i < $this->input->post('amount') ; $i++) { 
+						$this->db->update('code_ticket',['receiver'=>$username,'send'=>1],['members'=>$user->upline,'send'=>0]);
+					}
+				}else{
+					$sisa = $this->input->post('amount') - $count_cek_tiket_upline;
+					for ($i=0; $i < $count_cek_tiket_upline ; $i++) { 
+						$this->db->update('code_ticket',['receiver'=>$username,'send'=>1],['members'=>$user->upline,'send'=>0]);
+					}
+				}
+			}else{
+				$sisa = $this->input->post('amount');
 			}
-			json_success("Buy Ticket is successful",null);
+			
+				if ($save) {
+					for ($i=0; $i < $sisa ; $i++) { 
+						$this->db->insert('code_ticket',[
+							'members'=>$username,
+							'ticket'=>$this->getRandomStr(9)
+						]);
+					}
+					json_success("Buy Ticket is successful",null);
+				}else{
+					json_error("Buy Ticket failed",null);
+				}
 		}else{
-			json_error("Buy Ticket failed",null);
+			json_error("Your balance not enought ".$usdt,null);
 		}
+		
 	}
 	public function update_profile()
 	{

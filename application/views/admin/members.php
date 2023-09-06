@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
 						<button type="button" id="btn_profile_control" class="btn btn-primary btn-block">Update Profile</button>
 					</div>
 				<?php }else { ?>
-					<table class="table table-bordered table-striped">
+					<table id="example" class="table table-bordered table-striped">
 						<thead>
 							<tr>
 								<th>No</th>
@@ -57,13 +57,13 @@ if (isset($_GET['id'])) {
 								$block = '<a href="?id='.$key->id.'&act=block" class="btn btn-danger btn-xxs">BLOCK</a>';
 								$unblock = '<a href="?id='.$key->id.'&act=unblock" class="btn btn-success btn-xxs">UNBLOCK</a>';
 								echo "<tr>
-								<td>".$no."</td>
-								<td>".$key->name."</td>
-								<td>".$key->username."</td>
-								<td>".$key->email."</td>
-								<td>".($key->status == 1 ? "Active" : "Pending")."</td>
-								<td>".($key->band == 1 ? 'TRUE' : "FALSE")."</td>
-								<td>".($key->band == 1 ? $unblock : $block)." <a href='?edit=".$key->id."' class='btn btn-primary btn-xxs'>Edit</a></td>
+								<td class='text-black'>".$no."</td>
+								<td class='text-black'>".$key->name."</td>
+								<td class='text-black'>".$key->username."</td>
+								<td class='text-black'>".$key->email."</td>
+								<td class='text-black'>".($key->status == 1 ? "Active" : "Pending")."</td>
+								<td class='text-black'>".($key->band == 1 ? 'TRUE' : "FALSE")."</td>
+								<td class='text-black'>".($key->band == 1 ? $unblock : $block)." <a href='?edit=".$key->id."' class='btn btn-primary btn-xxs'>Edit</a></td>
 								</tr>";
 							}
 							?>

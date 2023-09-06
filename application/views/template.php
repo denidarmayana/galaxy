@@ -158,6 +158,7 @@
                     <li><a href="<?=base_url('transaction/daily') ?>">Daily Income</a></li>
                     <li><a href="<?=base_url('transaction/referral') ?>">Referral Earnings</a></li>
                     <li><a href="<?=base_url('transaction/reward') ?>">Reward</a></li>
+                    <li><a href="<?=base_url('transaction/deposit-usdt') ?>">Deposit USDT</a></li>
                     <li><a href="<?=base_url('transaction/withdrawal') ?>">Withdrawal</a></li>
                 </ul>
             </li>
