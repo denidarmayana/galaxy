@@ -121,7 +121,13 @@ class Home extends CI_Controller
 		$saldo = $this->db->select_sum("amount")->get_where('usdt',['members'=>$username,'status'=>1])->row();
 		$harga = $this->input->post('amount')*$usdt;
 		if ($saldo->amount > $harga) {
-			$save = $this->db->insert("ticket",['count'=>$this->input->post('amount'),'members'=>$username,'status'=>1]);
+			$save = $this->db->insert("ticket",[
+				'count'=>$this->input->post('amount'),
+				'members'=>$username,
+				'price'=>$usdt,
+				'total'=>$usdt*$this->input->post('amount'),
+				'status'=>1
+			]);
 			$cek_tiket_upline = $this->db->join('members','members.username=code_ticket.members')->get_where("code_ticket",['code_ticket.members'=>$user->upline,'members.position'=>1])->row();
 			$count_cek_tiket_upline = $this->db->get_where("code_ticket",['members'=>$user->upline])->num_rows();
 			if ($cek_tiket_upline) {
