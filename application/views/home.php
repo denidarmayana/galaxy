@@ -66,7 +66,7 @@
 					</a>
 					<a class="btn btn-outline-warning btn-block mt-3 px-5" href="javascript:void(0)">
 						<?php 
-						$subcribe = $this->db->get_where("subcribe",['members'=>$user->username,'status'=>1])->row();
+						$subcribe = $this->db->order_by('id','desc')->get_where("subcribe",['members'=>$user->username,'status'=>1])->row();
 						if ($subcribe) {
 							$pkt = $this->db->get_where("paket",['id'=>$subcribe->paket])->row();
 							echo $pkt->name;
