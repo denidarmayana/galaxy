@@ -56,7 +56,7 @@
 						<?=number($key->amount) ?> MBIT
 					</p>
 					<p class="text-success mb-0">
-						1% Per Day
+						5% Per Day
 					</p>
 					<input type="hidden" class="paket<?=$key->id ?>" value="<?=$key->id ?>">
 					<?php if ($subcribe) { ?>
