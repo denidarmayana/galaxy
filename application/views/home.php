@@ -43,7 +43,7 @@
 						$subcribe = $this->db->order_by('id','desc')->get_where("subcribe",['members'=>$user->username,'status'=>1])->row();
 						if ($subcribe) {
 							$pkt = $this->db->get_where("paket",['id'=>$subcribe->paket])->row();
-							$harian = $pkt->amount*(1/100);
+							$harian = $pkt->amount*(5/100);
 							$bns_hari = $harian/24;
 							$menitan = $bns_hari/60;
 							$detik = $menitan/60;
