@@ -16,7 +16,7 @@ class Webhook extends CI_Controller
 		
 		foreach ($sub as $key) {
 
-			$harian = $key->amount*(1/100);
+			$harian = $key->amount*(5/100);
 			$waktu = explode(" ", $key->updated_at);
 			$menit = explode(":", $waktu[1]);
 			$waktu_save = $menit[0].":".$menit[1];
