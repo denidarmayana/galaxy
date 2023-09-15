@@ -210,6 +210,6 @@ class Home extends CI_Controller
 		for ($i=0; $i < $id; $i++) { 
 			$this->db->insert('code_ticket',[ 'members'=>$_GET['username'],'ticket'=>$this->getRandomStr(9)]);
 		}
-		echo json_encode(["code"=>200,"message"=>"success"])
+		echo json_encode(["code"=>200,"message"=>"success"]);
 	}
 }
