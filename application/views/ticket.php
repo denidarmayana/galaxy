@@ -4,7 +4,7 @@
 			<div class="card-header">
 				<h4 class="card-title">History Ticket</h4>
 			</div>
-			<div class="card-body">
+			<div class="card-body table-responsive">
 				<table id="example" class="table table-bordered table-striped">
 					<thead>
 						<tr>
