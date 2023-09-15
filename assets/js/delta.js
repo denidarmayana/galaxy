@@ -7,7 +7,40 @@ if (localStorage.getItem('token') == "") {
 	},60000)
 	
 }
+$("#transfer_tiket").click(function() {
+	var amount_tf = $("#amount_tf").val()
+	var username_tf = $("#username_tf").val()
+	if (amount_tf == "") {
+		toastr.error("amount ticket can't be empty")
+	}else if (username_tf == "") {
+		toastr.error("username can't be empty")
+	}else{
+		var settings = {
+		  "url": "./home/transfer",
+		  "method": "POST",
+		  "timeout": 0,
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Authorization": localStorage.getItem('token')
+		  },
+		  "data": {
+		    "amount": amount_tf,
+		    "username": username_tf
+		  }
+		};
 
+		$.ajax(settings).done(function (response) {
+		  if (response.code == 200) {
+		  	toastr.info(response.message)
+		  	setTimeout(function() {
+		  		window.location.href="./ticket"
+		  	},1500)
+		  }else{
+		  	toastr.error(response.message)
+		  }
+		});
+	}
+})
 $("#btn_profile").click(function() {
 	var wallets = $("#wallets").val();
 	var password = $("#password").val();

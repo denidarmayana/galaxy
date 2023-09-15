@@ -179,4 +179,29 @@ class Home extends CI_Controller
 		}
 		json_success("Update Profile is successful",null);
 	}
+	public function transfer()
+	{
+		jsons();
+		$data = $this->input->post();
+		$cekuser = $this->db->get_where("members",['username'=>$data['username']])->num_rows();
+		if ($cekuser == 0) {
+			json_error("Username not registered ",null);
+		}else{
+			$total_tiket = $this->db->get_where("code_ticket",['members'=>$this->session->userdata("username")])->num_rows();
+			if ($total_tiket < $data['amount']) {
+				json_error("Your have not enoughr ticket ",null);
+			}else{
+				$result = $this->db->get_where("code_ticket",['members'=>$this->session->userdata("username")],$data['amount'])->result();
+				$count = 0;
+				foreach ($result as $key) {
+					$count++;
+					$this->db->update("code_ticket",['send'=>1,'receiver'=>$data['username']],['ticket'=>$key->ticket]);
+					$this->db->insert("code_ticket",['members'=>$data['username'],'ticket'=>$key->ticket]);
+				}
+				if ($count == $data['amount']) {
+					json_success("Transfer Ticket successful",null);
+				}
+			}
+		}
+	}
 }

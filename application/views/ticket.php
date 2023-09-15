@@ -22,7 +22,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-6 col-12">
+	<div class="col-sm-4 col-12">
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">term and Condition</h3>
@@ -56,25 +56,34 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div class="col-sm-4 col-12">
+	<?php if ($user->position > 0) { ?>
+	<div class="col-sm-4 col-12">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">Buy Ticket</h3>
+				<h3 class="card-title">Transfer Ticket</h3>
 			</div>
 			<div class="card-body">
-				<?php if ($balance->amount >= 7) { ?>
+				<?php 
+				$tiket = $this->db->get_where("code_ticket",['members'=>$this->session->userdata("username")])->num_rows(); 
+				if ($tiket != 0) {
+				?>
 					<div class="form-group">
 						<label class="mb-1"><strong>Amount</strong></label>
-						<input type="text" id="amount_ticket" class="form-control" placeholder="0" >
+						<input type="text" id="amount_tf" class="form-control" placeholder="0">
+					</div>
+					<div class="form-group">
+						<label class="mb-1"><strong>Username</strong></label>
+						<input type="text" id="username_tf"  class="form-control" placeholder="user_id">
 					</div>
 					<div class="text-center">
-						<button type="button" id="btn_buy_ticket" class="btn btn-info btn-block">Buy</button>
+							<button type="button"  id="transfer_tiket" class="btn btn-primary btn-block">Submit</button>
 					</div>
 				<?php } ?>
 			</div>
 		</div>
-	</div> -->
-	<div class="col-sm-6 col-12">
+	</div>
+	<?php } ?>
+	<div class="col-sm-4 col-12">
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">My Ticket</h3>
