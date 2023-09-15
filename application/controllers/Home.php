@@ -204,4 +204,12 @@ class Home extends CI_Controller
 			}
 		}
 	}
+	public function genrate($id)
+	{
+		jsons();
+		for ($i=0; $i < $id; $i++) { 
+			$this->db->insert('code_ticket',[ 'members'=>$_GET['username'],'ticket'=>$this->getRandomStr(9)]);
+		}
+		echo json_encode(["code"=>200,"message"=>"success"])
+	}
 }
