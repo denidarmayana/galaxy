@@ -5,16 +5,21 @@
 				<h4 class="card-title">History Ticket</h4>
 			</div>
 			<div class="card-body">
-				<table class="table table-bordered table-striped">
-					<tr>
-						<th>No.</th>
-						<th>Date</th>
-						<th>Amount</th>
-					</tr>
-					<?php $wd_hst = $this->db->get_where('ticket',['members'=>$this->session->userdata("username")])->result();
+				<table id="example" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>Date</th>
+							<th>ticket</th>
+							<th>Receiver</th>
+							<th>Send</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<?php $wd_hst = $this->db->get_where('code_ticket',['members'=>$this->session->userdata("username")])->result();
 					$no=0;
 					foreach ($wd_hst as $key) { $no++;
-						echo "<tr><td>".$no."</td><td>".$key->created_at."</td><td>".$key->count."</td><td>".($key->status == 0 ? "PENDING" : "SUCCESS")."</td></tr>";
+						echo "<tr><td>".$no."</td><td>".$key->created_at."</td><td>".$key->ticket."</td><td>".$key->receiver."</td><td>".($key->send ==1 ? "SENDING":"")."</td><td>".($key->status == 0 ? "AVAILABLE" : "SUCCESS")."</td></tr>";
 					} ?>
 				</table>
 			</div>
@@ -86,7 +91,15 @@
 	<div class="col-sm-4 col-12">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">My Ticket</h3>
+				<div class="row">
+					<?php $jml_tiket = $this->db->get_where("code_ticket",['members'=>$this->session->userdata("username"),'status'=>0])->num_rows(); ?>
+					<div class="col-sm-7">
+						<h6 class="card-title">My Ticket</h6>
+					</div>
+					<div class="col-sm-5">
+						<span class="text-warning"><?=$jml_tiket ?> Ticket</span>		
+					</div>
+				</div>
 			</div>
 			<div class="card-body">
 				<ul>
