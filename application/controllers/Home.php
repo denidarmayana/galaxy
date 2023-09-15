@@ -195,7 +195,7 @@ class Home extends CI_Controller
 				$count = 0;
 				foreach ($result as $key) {
 					$count++;
-					$this->db->update("code_ticket",['send'=>1,'receiver'=>$data['username']],['ticket'=>$key->ticket]);
+					$this->db->update("code_ticket",['send'=>1,'receiver'=>$data['username'],'status'=>1],['ticket'=>$key->ticket]);
 					$this->db->insert("code_ticket",['members'=>$data['username'],'ticket'=>$key->ticket]);
 				}
 				if ($count == $data['amount']) {
