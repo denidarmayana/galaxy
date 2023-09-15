@@ -1,4 +1,27 @@
 <div class="row">
+	<div class="col-sm-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">History Ticket</h4>
+			</div>
+			<div class="card-body">
+				<table class="table table-bordered table-striped">
+					<tr>
+						<th>No.</th>
+						<th>Date</th>
+						<th>Amount</th>
+					</tr>
+					<?php $wd_hst = $this->db->get_where('ticket',['members'=>$this->session->userdata("username")])->result();
+					$no=0;
+					foreach ($wd_hst as $key) { $no++;
+						echo "<tr><td>".$no."</td><td>".$key->created_at."</td><td>".$key->count."</td><td>".($key->status == 0 ? "PENDING" : "SUCCESS")."</td></tr>";
+					} ?>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
 	<div class="col-sm-4 col-12">
 		<div class="card">
 			<div class="card-header">

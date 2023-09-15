@@ -1,6 +1,30 @@
 <?php if ($subcribe) { ?>
 	<div class="row">
-		<div class="col-xl-6 col-sm-6">
+		<div class="col-sm-6">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title">History Subcribed</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered table-striped">
+						<tr>
+							<th>No</th>
+							<th>Date</th>
+							<th>Name</th>
+							<th>Status</th>
+						</tr>
+					<?php
+					$data = $this->db->select('paket.name, subcribe.*')->join('paket','paket.id=subcribe.paket')->get_where("subcribe",['subcribe.members'=>$user->username])->result();
+					$no=0;
+					foreach ($data as $key) { $no++;
+						echo "<tr><td>".$no."</td><td>".$key->created_at."</td><td>".$key->name."</td><td>".($key->status == 1 ? "ACTIVE" : "PENDING") ."</td></tr>";
+					}
+					?>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-sm-3">
 			<div class="card">
 				<div class="card-body text-center">
 					<img src="<?=base_url('assets/images/'.strtolower($subcribe->name).".png") ?>" width="160" class="mb-4">
@@ -14,7 +38,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xl-6 col-sm-6">
+		<div class="col-xl-3 col-sm-3">
 			<div class="card">
 				<div class="card-body">
 					<center>
@@ -47,7 +71,7 @@
 
 <div class="row">
 	<?php foreach ($paket as $key) { ?>
-		<div class="col-xl-4 col-sm-6 m-t35">
+		<div class="col-xl-3 col-sm-6 m-t35">
 			<div class="card card-coin">
 				<div class="card-body text-center">
 					<img src="<?=base_url('assets/images/'.strtolower($key->name).".png") ?>" width="160" class="mb-4">

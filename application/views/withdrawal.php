@@ -12,6 +12,28 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 <div class="row">
 	<div class="col-sm-12 col-12">
 		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">History Withdrawal</h4>
+			</div>
+			<div class="card-body table-responsive">
+				<table class="table table-bordered table-striped">
+					<tr>
+						<th>No</th>
+						<th>Date</th>
+						<th>Amount</th>
+						<th>Status</th>
+					</tr>
+					<?php $wd_hst = $this->db->get_where('widthdrawal',['members'=>$this->session->userdata("username")])->result();
+					$no=0;
+					foreach ($wd_hst as $key) { $no++;
+						echo "<tr><td>".$no."</td><td>".$key->created_at."</td><td>".$key->amount."</td><td>".($key->status == 0 ? "PENDING" : "SUCCESS")."</td></tr>";
+					} ?>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12 col-12">
+		<div class="card">
 			<div class="card-body">
 				<h3 class="card-title">
 					Current Daily Bonuses

@@ -47,7 +47,7 @@ class Webhook extends CI_Controller
 		foreach ($manager as $m) {
 			$cek = $this->db->like('created_at',$dates)->get_where("reward",['members'=>$m->username])->num_rows();
 			if ($cek == 0) {
-				if (date("H:i:s") == "23:59:00") {
+				if (date("H:i") == "23:59") {
 					$this->db->insert("reward",[
 						'members'=>$m->username,
 						'amount'=>$amount_manager,
