@@ -55,13 +55,14 @@ class Transaction extends CI_Controller
 	}
 	public function deposit_usdt()
 	{
-		$data = [
-			'title'=>"Dashboard",
-			'user'=>$this->db->get_where("members",['username'=>$this->session->userdata('username')])->row(),
-			'usdt'=>$this->db->get_where("usdt",['members'=>$this->session->userdata('username')])->result(),
+		// $data = [
+		// 	'title'=>"Dashboard",
+		// 	'user'=>$this->db->get_where("members",['username'=>$this->session->userdata('username')])->row(),
+		// 	'usdt'=>$this->db->get_where("usdt",['members'=>$this->session->userdata('username')])->result(),
 			
-		];
-		$this->template->load("template",'deposit_usdt',$data);
+		// ];
+		// $this->template->load("template",'deposit_usdt',$data);
+		reridect("home");
 	}
 	public function act_wd()
 	{
