@@ -22,7 +22,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-4 col-12">
+	<div class="col-sm-6 col-12">
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">term and Condition</h3>
@@ -56,7 +56,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-4 col-12">
+	<!-- <div class="col-sm-4 col-12">
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">Buy Ticket</h3>
@@ -73,8 +73,8 @@
 				<?php } ?>
 			</div>
 		</div>
-	</div>
-	<div class="col-sm-4 col-12">
+	</div> -->
+	<div class="col-sm-6 col-12">
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">My Ticket</h3>
