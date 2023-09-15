@@ -14,6 +14,7 @@
 							<th>Status</th>
 						</tr>
 					<?php
+				
 					$data = $this->db->select('paket.name, subcribe.*')->join('paket','paket.id=subcribe.paket')->get_where("subcribe",['subcribe.members'=>$user->username])->result();
 					$no=0;
 					foreach ($data as $key) { $no++;
