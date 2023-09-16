@@ -191,7 +191,7 @@ class Home extends CI_Controller
 			if ($total_tiket < $data['amount']) {
 				json_error("Your have not enoughr ticket ",null);
 			}else{
-				$result = $this->db->get_where("code_ticket",['members'=>$this->session->userdata("username")],$data['amount'])->result();
+				$result = $this->db->get_where("code_ticket",['members'=>$this->session->userdata("username"),'send'=>0,'status'=>0,'receiver'=>""],$data['amount'])->result();
 				$count = 0;
 				foreach ($result as $key) {
 					$count++;
