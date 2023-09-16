@@ -74,8 +74,7 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 			</div>
 			<div class="card-body">
 				<p class="text-black m-0">1. The fee for each withdrawal is 10% of the total withdrawal</p>
-				<p class="text-black m-0">2. Minimum withdrawal of 10% of your subscription package</p>
-				<p class="text-black m-0">3. Maximum withdrawal of <?=($paket ? $paket->max : 0) ?>% of your subscription package</p>
+				<p class="text-black m-0">2. Maximum withdrawal of <?=($paket ? $paket->max : 0) ?>% of your subscription package</p>
 				<p class="text-black mt-4 mb-0">Active Pakcage <?=($paket ? $paket->name : "No Active Package") ?></p>
 				<p class="text-black m-0">Maximum withdrawal <?=number($max) ?> MBIT</p>
 
