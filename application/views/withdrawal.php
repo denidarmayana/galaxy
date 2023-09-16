@@ -6,7 +6,7 @@ $reward = $this->db->select_sum("amount")->get_where('reward',['members'=>$this-
 $wd = $this->db->select_sum("amount")->get_where('widthdrawal',['members'=>$this->session->userdata("username")])->row();
 $wd_today = $this->db->like('created_at',date("Y-m-d"))->get_where('widthdrawal',['members'=>$this->session->userdata("username")]);
 $total_bonus = ($roi->amount+$bonus_level->amount+$reward->amount);
-$max = ($paket ? $paket->amount : 0 )*(20/100);
+$max = ($paket ? $paket->amount : 0 )*($paket->max/100);
 $min = ($paket ? $paket->amount: 0 )*(10/100);
 ?>
 <div class="row">
@@ -78,7 +78,6 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 				<p class="text-black m-0">3. Maximum withdrawal of 20% of your subscription package</p>
 				<p class="text-black mt-4 mb-0">Active Pakcage <?=($paket ? $paket->name : "No Active Package") ?></p>
 				<p class="text-black m-0">Maximum withdrawal <?=number($max) ?> MBIT</p>
-				<p class="text-black m-0">Minimum withdrawal <?=number($min) ?> MBIT</p>
 
 				<p class="text-success mt-4 mb-0">Overall Bonuses</p>
 				<p class="text-warning m-0">Daily Bonuses : <?=number($roi->amount) ?> MBIT</p>
