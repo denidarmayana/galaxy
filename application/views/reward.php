@@ -1,4 +1,26 @@
 <div class="row">
+	<div class="col-sm-12">
+		<div class="card">
+			<div class="card-body table-responsive">
+				<table id="example" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>Date</th>
+							<th>Amount</th>
+						</tr>
+					</thead>
+					<?php $wd_hst = $this->db->get_where('reward',['members'=>$this->session->userdata("username")])->result();
+					$no=0;
+					foreach ($wd_hst as $key) { $no++;
+						echo "<tr><td>".$no."</td><td>".$key->created_at."</td><td>".$key->amount."</td></tr>";
+					} ?>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
 	<div class="col-sm-6 col-12">
 		<div class="card">
 			<div class="card-header">
