@@ -98,6 +98,7 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 				<?php if (isset($_GET['ticket'])) { 
 					$cek = $this->db->get_where("code_ticket",['ticket'=>$_GET['ticket'],"members"=>$this->session->userdata("username"),'send'=>0,'status'=>0])->num_rows();
 					if ($cek == 1) {
+					
 						
 				?>
 					<div class="form">
@@ -135,9 +136,7 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 						</div>
 						</form>
 					<?php } ?>
-				<?php } else{
-					echo "<div class='alert alert-danger'>Yout Ticket not registered</div>";
-				} ?>
+				
 			</div>
 		</div>
 	</div>
