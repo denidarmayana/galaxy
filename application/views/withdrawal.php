@@ -97,8 +97,9 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 			<div class="card-body">
 				<?php if (isset($_GET['ticket'])) { 
 					$cek = $this->db->get_where("code_ticket",['ticket'=>$_GET['ticket'],"members"=>$this->session->userdata("username"),'send'=>0,'status'=>0])->num_rows();
-					if ($cek == 1) {
-					
+					if ($cek == 0) {
+						echo "Salah";
+					}
 						
 				?>
 					<div class="form">
