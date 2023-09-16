@@ -100,25 +100,29 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 						
 					?>
 					<div class="form">
-						<?php if ($wd_today->num_rows() == 0 && $cek == 1) { ?>
-						<input type="hidden" id="max_wd" value="<?=$max ?>">
-						<input type="hidden" id="min_wd" value="<?=$min ?>">
-						<input type="hidden" id="ticket" value="<?=$_GET['ticket'] ?>">
-						<div class="form-group">
-							<label class="mb-1"><strong>Amount</strong></label>
-							<input type="text" id="amount" class="form-control" placeholder="0">
-						</div>
-						<div class="form-group">
-							<label class="mb-1"><strong>Fee Transaction</strong></label>
-							<input type="text" id="fee" readonly class="form-control" placeholder="0">
-						</div>
-						<div class="form-group">
-							<label class="mb-1"><strong>Net Amount</strong></label>
-							<input type="text" id="net" readonly class="form-control" placeholder="0">
-						</div>
-						<div class="text-center">
-							<button type="button" disabled id="act_wd" class="btn btn-primary btn-block">Submit</button>
-						</div>
+						<?php if ($cek == 0) {
+							echo "<div class='alert alert-danger'>Your Ticket not Available</div>";
+						}else{ ?>
+							<?php if ($wd_today->num_rows() == 0) { ?>
+							<input type="hidden" id="max_wd" value="<?=$max ?>">
+							<input type="hidden" id="min_wd" value="<?=$min ?>">
+							<input type="hidden" id="ticket" value="<?=$_GET['ticket'] ?>">
+							<div class="form-group">
+								<label class="mb-1"><strong>Amount</strong></label>
+								<input type="text" id="amount" class="form-control" placeholder="0">
+							</div>
+							<div class="form-group">
+								<label class="mb-1"><strong>Fee Transaction</strong></label>
+								<input type="text" id="fee" readonly class="form-control" placeholder="0">
+							</div>
+							<div class="form-group">
+								<label class="mb-1"><strong>Net Amount</strong></label>
+								<input type="text" id="net" readonly class="form-control" placeholder="0">
+							</div>
+							<div class="text-center">
+								<button type="button" disabled id="act_wd" class="btn btn-primary btn-block">Submit</button>
+							</div>
+							<?php } ?>
 						<?php } ?>
 					</div>
 					<?php } else{ 
