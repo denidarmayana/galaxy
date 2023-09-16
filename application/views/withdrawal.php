@@ -125,7 +125,6 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 						<?php } ?>
 					</div>
 					<?php } else{ 
-						echo "<div class='alert alert-danger'>Yout Ticket not registered</div>";
 						?>
 						<form method="get">
 						<div class="form-group">
