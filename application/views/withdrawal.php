@@ -96,45 +96,48 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 			</div>
 			<div class="card-body">
 				<?php if (isset($_GET['ticket'])) { 
-					$cek = $this->db->get_where("code_ticket",['ticket'=>$_GET['ticket']])->row();
-					if ($cek->members != $this->session->userdata("username")) {
-						header("Location: https://galaxy7.tech/auth");
-						exit;
-					}
+					$cek = $this->db->get_where("code_ticket",['ticket'=>$_GET['ticket'],"members"=>$this->session->userdata("username"),'send'=>0,'status'=>0])->num_rows();
+					if ($cek == 1) {
+						
 				?>
-				<div class="form">
-					<?php if ($wd_today->num_rows() == 0) { ?>
-					<input type="hidden" id="max_wd" value="<?=$max ?>">
-					<input type="hidden" id="min_wd" value="<?=$min ?>">
-					<input type="hidden" id="ticket" value="<?=$_GET['ticket'] ?>">
-					<div class="form-group">
-						<label class="mb-1"><strong>Amount</strong></label>
-						<input type="text" id="amount" class="form-control" placeholder="0">
+					<div class="form">
+						<?php if ($wd_today->num_rows() == 0) { ?>
+						<input type="hidden" id="max_wd" value="<?=$max ?>">
+						<input type="hidden" id="min_wd" value="<?=$min ?>">
+						<input type="hidden" id="ticket" value="<?=$_GET['ticket'] ?>">
+						<div class="form-group">
+							<label class="mb-1"><strong>Amount</strong></label>
+							<input type="text" id="amount" class="form-control" placeholder="0">
+						</div>
+						<div class="form-group">
+							<label class="mb-1"><strong>Fee Transaction</strong></label>
+							<input type="text" id="fee" readonly class="form-control" placeholder="0">
+						</div>
+						<div class="form-group">
+							<label class="mb-1"><strong>Net Amount</strong></label>
+							<input type="text" id="net" readonly class="form-control" placeholder="0">
+						</div>
+						<div class="text-center">
+							<button type="button" disabled id="act_wd" class="btn btn-primary btn-block">Submit</button>
+						</div>
+						<?php } ?>
 					</div>
-					<div class="form-group">
-						<label class="mb-1"><strong>Fee Transaction</strong></label>
-						<input type="text" id="fee" readonly class="form-control" placeholder="0">
-					</div>
-					<div class="form-group">
-						<label class="mb-1"><strong>Net Amount</strong></label>
-						<input type="text" id="net" readonly class="form-control" placeholder="0">
-					</div>
-					<div class="text-center">
-						<button type="button" disabled id="act_wd" class="btn btn-primary btn-block">Submit</button>
-					</div>
+					<?php } else{ 
+						echo "<div class='alert alert-danger'>Yout Ticket not registered</div>";
+						?>
+						<form method="get">
+						<div class="form-group">
+							<label class="mb-1"><strong>Ticket Withdrawal</strong></label>
+							<input type="text" name="ticket" class="form-control" placeholder="Insert your ticket">
+						</div>
+						<div class="text-center">
+							<button type="submit" id="act_wd" class="btn btn-primary btn-block">Submit</button>
+						</div>
+						</form>
 					<?php } ?>
-				</div>
-				<?php } else{ ?>
-					<form method="get">
-					<div class="form-group">
-						<label class="mb-1"><strong>Ticket Withdrawal</strong></label>
-						<input type="text" name="ticket" class="form-control" placeholder="Insert your ticket">
-					</div>
-					<div class="text-center">
-						<button type="submit" id="act_wd" class="btn btn-primary btn-block">Submit</button>
-					</div>
-					</form>
-				<?php } ?>
+				<?php } else{
+					echo "<div class='alert alert-danger'>Yout Ticket not registered</div>";
+				} ?>
 			</div>
 		</div>
 	</div>
