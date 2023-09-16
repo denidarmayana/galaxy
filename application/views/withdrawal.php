@@ -97,7 +97,7 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 			<div class="card-body">
 				<?php if (isset($_GET['ticket'])) { 
 					$cek = $this->db->get_where("code_ticket",['ticket'=>$_GET['ticket']])->row();
-					if (strtolower($cek->members) != strtolower($this->session->userdata("username"))) {
+					if ($cek->members != $this->session->userdata("username")) {
 						header("Location: https://galaxy7.tech/auth");
 						exit;
 					}
