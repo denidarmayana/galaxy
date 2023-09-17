@@ -16,6 +16,7 @@ if (isset($_GET['del'])) {
 						<tr>
 							<th>No</th>
 							<th>Name</th>
+							<th>Username</th>
 							<th>Amount</th>
 							<th>Hash</th>
 							<th>Status</th>
@@ -29,6 +30,7 @@ if (isset($_GET['del'])) {
 							echo "<tr>
 							<td>".$no."</td>
 							<td>".$key->name."</td>
+							<td>".$key->username."</td>
 							<td>".number($key->amount)." MBIT</td>
 							<td>".$key->hash."</td>
 							<td>".($key->status == 1 ? "Success" : "Pending")."</td>

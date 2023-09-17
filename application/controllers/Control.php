@@ -50,7 +50,7 @@ class Control extends CI_Controller
 		$data = [
 			'title'=>"Members",
 			'user'=>$users,
-			'subcribe'=>$this->db->select('members.name,subcribe.*')->join('members','members.username=subcribe.members')->order_by('subcribe.id','desc')->get("subcribe")->result(),
+			'subcribe'=>$this->db->select('members.name,members.username,subcribe.*')->join('members','members.username=subcribe.members')->order_by('subcribe.id','desc')->get("subcribe")->result(),
 		];
 		$this->template->load("admin",'admin/subcribe',$data);
 	}
