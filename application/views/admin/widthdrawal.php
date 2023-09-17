@@ -15,6 +15,7 @@ if (isset($_GET['id'])) {
 						<tr>
 							<th>No</th>
 							<th>Name</th>
+							<th>Username</th>
 							<th>Amount</th>
 							<th>Fee</th>
 							<th>Net</th>

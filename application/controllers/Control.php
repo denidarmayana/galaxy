@@ -64,7 +64,7 @@ class Control extends CI_Controller
 		$data = [
 			'title'=>"Widthdrawal",
 			'user'=>$users,
-			'widthdrawal'=>$this->db->select('members.name,widthdrawal.*')->join('members','members.username=widthdrawal.members')->order_by('widthdrawal.id','desc')->get("widthdrawal")->result(),
+			'widthdrawal'=>$this->db->select('members.name,members.username,widthdrawal.*')->join('members','members.username=widthdrawal.members')->order_by('widthdrawal.id','desc')->get("widthdrawal")->result(),
 		];
 		$this->template->load("admin",'admin/widthdrawal',$data);
 	}
