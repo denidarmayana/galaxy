@@ -32,6 +32,7 @@ if (isset($_GET['id'])) {
 							echo "<tr>
 							<td>".$no."</td>
 							<td>".$key->name."</td>
+							<td>".$key->username."</td>
 							<td>".number($key->amount)." MBIT</td>
 							<td>".number($key->fee)." MBIT</td>
 							<td>".number($key->net)." MBIT</td>
