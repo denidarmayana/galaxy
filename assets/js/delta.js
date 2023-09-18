@@ -7,6 +7,41 @@ if (localStorage.getItem('token') == "") {
 	},60000)
 	
 }
+$("#act_infak").click(function() {
+	var saldo = $("#saldo").val();
+	var infak = $("#amount_infak").val();
+	if (infak == "") {
+		toastr.error("Amount Infak can't be empty")
+	}else if (infak == 0) {
+		toastr.error("YAmount Infak can't 0 value")
+	}else if (infak > saldo) {
+		toastr.error("Your balance not enought")
+	}else{
+		var settings = {
+		  "url": "./home/infak",
+		  "method": "POST",
+		  "timeout": 0,
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Authorization": localStorage.getItem('token')
+		  },
+		  "data": {
+		    "amount": infak,
+		  }
+		};
+
+		$.ajax(settings).done(function (response) {
+		  if (response.code == 200) {
+		  	toastr.info(response.message)
+		  	setTimeout(function() {
+		  		window.location.href="./infak"
+		  	},1500)
+		  }else{
+		  	toastr.error(response.message)
+		  }
+		});
+	}
+})
 $("#transfer_tiket").click(function() {
 	var amount_tf = $("#amount_tf").val()
 	var username_tf = $("#username_tf").val()

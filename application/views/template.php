@@ -140,6 +140,11 @@
 	                <span class="nav-text">Dashboard</span>
 	            </a>
 	        </li>
+	        <li><a href="<?=base_url('infak') ?>">
+	                <i class="flaticon-381-diamond"></i>
+	                <span class="nav-text">Infaq</span>
+	            </a>
+	        </li>
             <li><a href="<?=base_url('package') ?>">
 	                <i class="flaticon-381-diamond"></i>
 	                <span class="nav-text">Package</span>

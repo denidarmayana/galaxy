@@ -212,4 +212,15 @@ class Home extends CI_Controller
 		}
 		echo json_encode(["code"=>200,"message"=>"success"]);
 	}
+	public function infak()
+	{
+		jsons();
+		$data = $this->input->post();
+		$insert= [
+			'amount'=>$data['amount'],
+			'members'=>$this->session->userdata("username")
+		];
+		$this->db->insert("infaq",$insert);
+		json_success("Transaction Infak successful",null);
+	}
 }

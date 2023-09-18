@@ -8,6 +8,8 @@ $wd_today = $this->db->like('created_at',date("Y-m-d"))->get_where('widthdrawal'
 $total_bonus = ($roi->amount+$bonus_level->amount+$reward->amount);
 $max = ($paket ? $paket->amount : 0 )*(($paket ? $paket->max : 0)/100);
 $min = ($paket ? $paket->amount: 0 )*(10/100);
+$infaq = $this->db->select_sum("amount")->get_where('infaq',['members'=>$this->session->userdata("username")])->row();
+$saldo_akhir = $total_bonus-($wd->amount+$infaq->amount);
 ?>
 <div class="row">
 	<div class="col-sm-12 col-12">
@@ -84,8 +86,8 @@ $min = ($paket ? $paket->amount: 0 )*(10/100);
 				<p class="text-primary m-0">Reward : <?=number($reward->amount) ?> MBIT</p>
 				<p class="text-danger m-0 font-w600" >Total : <?=number($total_bonus) ?> MBIT</p>
 				<p class="text-black m-0">Total Withdrawal : <?=number($wd->amount) ?> MBIT</p>
-				<p class="text-success m-0">Remaining Bonuses : <?=number($total_bonus-$wd->amount) ?> MBIT</p>
-				<input type="hidden" id="total_bonus" value="<?=$total_bonus-$wd->amount ?>">
+				<p class="text-success m-0">Remaining Bonuses : <?=number($saldo_akhir) ?> MBIT</p>
+				<input type="hidden" id="total_bonus" value="<?=$saldo_akhir ?>">
 			</div>
 		</div>
 	</div>
