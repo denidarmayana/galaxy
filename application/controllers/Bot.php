@@ -23,4 +23,5 @@ class Bot extends CI_Controller
 		];
 		$this->template->load("template",'bot',$data);
 	}
+	
 }

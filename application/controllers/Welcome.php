@@ -22,4 +22,9 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+	public function roling()
+	{
+		$data = $this->db->get("operator")->result();
+		echo json_encode($data);
+	}
 }

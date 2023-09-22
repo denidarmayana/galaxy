@@ -50,7 +50,7 @@
 						<p class="text-black mb-0">
 							Please make a payment to the wallet address of<br>
 							<!-- <span id="wallet" class="text-success" style="cursor: pointer;width: 100%;">0x3f7Daa26CEA77793805c7A133f214007E058Ef8E</span><br> -->
-							<span id="wallet" class="text-success" style="cursor: pointer;width: 100%;">0x35c413313cd69C2cFD14714E8FF3f80478539427</span><br>
+							<span id="wallet" class="text-success" style="cursor: pointer;width: 100%;">0x1d599c6a04Ab91dCF20Dc39a22EB7B7539f0D013</span><br>
 							with a nominal value of <span class="font-w600"><?=number($subcribe->amount) ?> MBIT
 						</p>
 						<?php if ($subcribe->hash == "") { ?>
