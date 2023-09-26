@@ -10,7 +10,7 @@ class Control extends CI_Controller
 		parent::__construct();
 		$this->load->model("model_app",'app');
 		$this->app->cekControl();
-		$this->app->cekPaket();
+		
 	}
 	public function index()
 	{
