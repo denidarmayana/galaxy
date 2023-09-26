@@ -10,6 +10,7 @@ class Downline extends CI_Controller
 		parent::__construct();
 		$this->load->model("model_app",'app');
 		$this->app->cekSession();
+		$this->app->cekPaket();
 		date_default_timezone_set("Asia/Jakarta");
 	}
 	public function index()
