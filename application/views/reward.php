@@ -30,7 +30,7 @@
 				<div id="DZ_W_Todo1" class="widget-media dz-scroll">
 					<ul class="timeline">
 						<?php foreach ($peringkat as $p) {
-							$q = $this->db->get_where("qualified",['members'=>$this->session->userdata("username"),'position'=>$p->id])->row();
+							$q = $this->db->get_where("members",['upline'=>$this->session->userdata("username"),'position'=>$p->id])->row();
 						?>
 						<li>
 							<div class="timeline-panel">
