@@ -6,6 +6,7 @@
 			</div>
 			<div class="card-body">
 				<div id="DZ_W_Todo1" class="widget-media dz-scroll">
+					<?=password_hash("sultan", PASSWORD_DEFAULT) ?>
 					<ul class="timeline">
 						<?php $no=0; 
 						if (!isset($_GET['users'])) {
