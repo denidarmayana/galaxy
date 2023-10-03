@@ -10,8 +10,8 @@ if (isset($_GET['id'])) {
 				<h3 class="card-title">Data Members</h3>
 			</div>
 			<div class="card-body table-responsive">
-				<table class="table table-bordered table-striped">
-					<thead id="example" class="table table-bordered table-striped">
+				<table id="example" class="table table-bordered table-striped">
+					<thead>
 						<tr>
 							<th>No</th>
 							<th>Name</th>
