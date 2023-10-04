@@ -7,7 +7,12 @@ if (!isset($_GET['users'])) {
 $total_omset = 0;
 foreach ($liset_downline as $keys) {
 	$omsets = $this->db->select('paket.amount')->order_by('subcribe.id','desc')->join('paket','paket.id=subcribe.paket')->get_where("subcribe",['members'=>$keys->username])->row();
-	$total_omset += $omsets->amount;
+	if ($omsets) {
+		$total_omset += $omsets->amount;
+	}else{
+		$total_omset += 0;
+	}
+	
 }
 ?>
 <div class="row">
