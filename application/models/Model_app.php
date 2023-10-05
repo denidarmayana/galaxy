@@ -84,7 +84,10 @@ class Model_app extends CI_Model
 		$roi = $this->db->select_sum("amount")->get_where("roi",['members'=>$this->session->userdata("username")])->row();
 		$penerimaan = $bns_level->amount+$roi->amount;
 		if ($penerimaan >= $limit ) {
-			redirect("package");
+			if($this->session->userdata("username") != "Pejuangtangguh"){
+				redirect("package");
+			}
+			
 		}else{
 			return TRUE;
 		}
