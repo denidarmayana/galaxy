@@ -12,7 +12,7 @@ class Webhook extends CI_Controller
 	}
 	public function daily()
 	{
-		$sub = $this->db->select('members.username,paket.amount,subcribe.updated_at')->join('members','members.username=subcribe.members')->join('paket','subcribe.paket=paket.id')->get_where("subcribe",['subcribe.status'=>1])->result();
+		$sub = $this->db->select('members.username,paket.amount,subcribe.updated_at')->join('members','members.username=subcribe.members')->join('paket','subcribe.paket=paket.id')->order_by('subcribe.id','desc')->get_where("subcribe",['subcribe.status'=>1])->result();
 		
 		foreach ($sub as $key) {
 
