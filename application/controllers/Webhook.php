@@ -59,5 +59,25 @@ class Webhook extends CI_Controller
 			
 		}
 		//manager
+
+		$count_shapire = $this->db->get_where("members",['position'=>2])->num_rows();
+		$reward_shapire = $amount_omset*(0.5/100);
+		$amount_shapire = $reward_shapire/$amount_shapire;
+		$shapire = $this->db->get_where("members",['position'=>2])->result();
+		foreach ($shapire as $s) {
+			$cek = $this->db->like('created_at',$dates)->get_where("reward",['members'=>$s->username])->num_rows();
+			if ($cek == 0) {
+				if (date("H:i") == "23:59") {
+					$this->db->insert("reward",[
+						'members'=>$s->username,
+						'amount'=>$amount_manager,
+						'created_at'=>$dates." 23:59:00",
+						'updated_at'=>$dates." 23:59:00"
+					]);
+				}
+			}
+			
+		}
+		//manager
 	}
 }
