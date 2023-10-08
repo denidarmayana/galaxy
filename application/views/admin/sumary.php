@@ -1,5 +1,5 @@
 <?php 
-$omset = $this->db->select_sum('paket.amount')->join("paket",'subcribe.paket=paket.id')->get('subcribe')->row();
+$omset = $this->db->select_sum('paket.amount')->join("paket",'subcribe.paket=paket.id')->get_where('subcribe',['subcribe.status'=>1])->row();
 $all_omset = $this->db->select_sum('amount')->get('subcribe')->row();
 $unik_omset = $all_omset->amount-$omset->amount;
 $wd = $this->db->select_sum('fee')->get('widthdrawal')->row();
