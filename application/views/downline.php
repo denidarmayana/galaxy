@@ -24,7 +24,7 @@ foreach ($liset_downline as $keys) {
 
 					
 				</H4>
-				<span class="float-end text-warning"><?=number($total_omset) ?> MBIT</span>
+				<span class="float-end text-warning"></span>
 			</div>
 			<div class="card-body">
 				<div id="DZ_W_Todo1" class="widget-media dz-scroll">
@@ -55,7 +55,7 @@ foreach ($liset_downline as $keys) {
 									<img alt="image" width="45" src="<?=base_url() ?>assets/logo.png">
 								</div>
 								<div class="media-body">
-									<h5 class="mb-1"><?=$key->name ?> / <span class="text-warning"><?=number($omst) ?> MBIT</span> <span class="float-end text-success"><?=$btn ?>  </span></h5>
+									<h5 class="mb-1"><?=$key->name ?> <span class="float-end text-success"><?=$btn ?>  </span></h5>
 									<small class="d-block"><?=($s ? $s->name:"No Active Packages") ?> / <?=($key->position == 1 ? $jb->name:"No Position") ?> / <?=$key->created_at ?></small>
 								</div>
 							</div>
@@ -64,13 +64,7 @@ foreach ($liset_downline as $keys) {
 					</ul>
 				</div>
 			</div>
-			<div class="card-footer">
-				<h3 class="card-title">
-					Total Personal Turnover
-					<span class="float-end text-warning"><?=number($total_omset+$omset_downline) ?> MBIT</span>
-				</h3>
-				
-			</div>
+			
 		</div>
 	</div>
 </div>
