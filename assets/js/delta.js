@@ -76,6 +76,70 @@ $("#transfer_tiket").click(function() {
 		});
 	}
 })
+$("#transfer_engine").click(function() {
+	var amount_tf = $("#amount_engine").val()
+	var username_tf = $("#username_engine").val()
+	if (amount_tf == "") {
+		toastr.error("amount engine can't be empty")
+	}else if (username_tf == "") {
+		toastr.error("username can't be empty")
+	}else{
+		var settings = {
+		  "url": "./home/transfer",
+		  "method": "POST",
+		  "timeout": 0,
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Authorization": localStorage.getItem('token')
+		  },
+		  "data": {
+		    "amount": amount_tf,
+		    "username": username_tf
+		  }
+		};
+
+		$.ajax(settings).done(function (response) {
+		  if (response.code == 200) {
+		  	toastr.info(response.message)
+		  	setTimeout(function() {
+		  		window.location.href="./engine"
+		  	},1500)
+		  }else{
+		  	toastr.error(response.message)
+		  }
+		});
+	}
+})
+$("#start_engine").click(function() {
+	var engine = $("#value_engine").val();
+	if (engine == "") {
+		toastr.error("Engine can't be empty")
+	}else{
+		var settings = {
+		  "url": "./home/start_engine",
+		  "method": "POST",
+		  "timeout": 0,
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Authorization": localStorage.getItem('token')
+		  },
+		  "data": {
+		    "engine": engine
+		  }
+		};
+
+		$.ajax(settings).done(function (response) {
+		  if (response.code == 200) {
+		  	toastr.info(response.message)
+		  	setTimeout(function() {
+		  		window.location.href="./"
+		  	},1500)
+		  }else{
+		  	toastr.error(response.message)
+		  }
+		});
+	}
+})
 $("#btn_profile").click(function() {
 	var wallets = $("#wallets").val();
 	var password = $("#password").val();

@@ -38,6 +38,8 @@
 						}
 						?>
 					</p>
+					<?php $cek_engine = $this->db->get_where("engine",['members'=>$this->session->userdata("username"),'status'=>1])->num_rows();
+					if ($cek_engine != 0) { ?>
 					<a class="btn btn-outline-info btn-block mt-3 px-5" href="javascript:void(0)">
 						<?php 
 						$subcribe = $this->db->order_by('id','desc')->get_where("subcribe",['members'=>$user->username,'status'=>1])->row();
@@ -54,11 +56,9 @@
 								$date_roi = date('Y-m-d H:i:s', strtotime('+'.$cek_roi.' days', strtotime($subcribe->updated_at)));
 								$today = selisih_waktu($date_roi);
 							}
-							$bns_now = ($bns_hari*$today->h)+($menitan*$today->i)+($detik*$today->s);
-							?>
+							$bns_now = ($bns_hari*$today->h)+($menitan*$today->i)+($detik*$today->s); ?>
 							<input type="hidden" value="<?=$detik ?>" id="bns_detik">
 							<span id="roi"><?=number_format($bns_now,8,'.',',') ?> MBIT</span>
-							
 						<?php }else{ ?>
 							<input type="hidden" value="0" id="bns_detik">
 							<span id="roi"><?=number_format(0.00000000,8,'.',',') ?> MBIT</span>
@@ -74,6 +74,15 @@
 							echo "No Active Packages";
 						} ?>
 					</a>
+					<?php } else{ ?>
+						<br>
+						<div class="form-group">
+							<input type="text" class="form-control" id="value_engine" placeholder="Engine Galaxy">
+						</div>
+						<div class="form-group">
+							<button class="btn btn-success btn-block" id="start_engine">Start Engine</button>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

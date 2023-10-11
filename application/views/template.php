@@ -140,6 +140,11 @@
 	                <span class="nav-text">Dashboard</span>
 	            </a>
 	        </li>
+	        <li><a href="<?=base_url('engine') ?>">
+	                <i class="flaticon-381-price-tag"></i>
+	                <span class="nav-text">My Engine</span>
+	            </a>
+	        </li>
 	        <li><a href="<?=base_url('infak') ?>">
 	                <i class="flaticon-381-diamond"></i>
 	                <span class="nav-text">Infaq</span>

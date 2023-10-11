@@ -205,6 +205,31 @@ class Home extends CI_Controller
 			}
 		}
 	}
+	public function transfer_engine()
+	{
+		jsons();
+		$data = $this->input->post();
+		$cekuser = $this->db->get_where("members",['username'=>$data['username']])->num_rows();
+		if ($cekuser == 0) {
+			json_error("Username not registered ",null);
+		}else{
+			$total_tiket = $this->db->get_where("enngine",['members'=>$this->session->userdata("username")])->num_rows();
+			if ($total_tiket < $data['amount']) {
+				json_error("Your have not enoughr engine ",null);
+			}else{
+				$result = $this->db->get_where("engine",['members'=>$this->session->userdata("username"),'send'=>0,'status'=>0,'receiver'=>""],$data['amount'])->result();
+				$count = 0;
+				foreach ($result as $key) {
+					$count++;
+					$this->db->update("engine",['send'=>1,'receiver'=>$data['username'],'status'=>1],['code'=>$key->code]);
+					$this->db->insert("engine",['members'=>$data['username'],'code'=>$key->code]);
+				}
+				if ($count == $data['amount']) {
+					json_success("Transfer Engine successful",null);
+				}
+			}
+		}
+	}
 	public function genrate($id)
 	{
 		jsons();
@@ -223,5 +248,24 @@ class Home extends CI_Controller
 		];
 		$this->db->insert("infaq",$insert);
 		json_success("Transaction Infak successful",null);
+	}
+	public function start_engine()
+	{
+		jsons();
+		$data = $this->input->post();
+		$cekuser = $this->db->get_where("engine",['code'=>$data['engine']]);
+		if ($cekuser->num_rows() == 0) {
+			json_error("Engine not registered ",null);
+		}else{
+			$row = $cekuser->row();
+			if ($row->members != $this->session->userdata("username")) {
+				json_error("Engine Not Allowed",null);
+			}else if ($row->status != 0) {
+				json_error("Engine Not Available",null);
+			}else{
+				$this->db->update("engine",['status'=>1],['members'=>$this->session->userdata("username")]);
+				json_success("Engine is startted",null);
+			}
+		}
 	}
 }
