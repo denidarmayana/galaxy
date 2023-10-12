@@ -263,7 +263,7 @@ class Home extends CI_Controller
 			}else if ($row->status != 0) {
 				json_error("Engine Not Available",null);
 			}else{
-				$this->db->update("engine",['status'=>1],['members'=>$this->session->userdata("username")]);
+				$this->db->update("engine",['status'=>1],['members'=>$this->session->userdata("username"),'code'=>$data['engine']]);
 				json_success("Engine is startted",null);
 			}
 		}
