@@ -209,4 +209,22 @@ class Auth extends CI_Controller
 		$this->db->update("members",['status'=>1],['username'=>$subcribe->username]);
 		redirect("control/subcribe");
 	}
+	function getRandomStr($n) {
+	  //$n = jumlah karakter
+	    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	    $randomString = '';
+	    for ($i = 0; $i < $n; $i++) {
+	        $index = rand(0, strlen($characters) - 1);
+	        $randomString .= $characters[$index];
+	    }
+	    return $randomString;
+	}
+	public function genrate($id)
+	{
+		jsons();
+		for ($i=0; $i < $id; $i++) { 
+			$this->db->insert('engine',[ 'members'=>$_GET['username'],'code'=>$this->getRandomStr(9)]);
+		}
+		echo json_encode(["code"=>200,"message"=>"success"]);
+	}
 }
