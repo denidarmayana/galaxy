@@ -81,6 +81,9 @@
 		<div class="card">
 			<div class="card-header">
 				<h6 class="card-title">Engine</h6>
+				<span class="text-success float-end">
+					<?php $eng = $this->db->get_where("engine",['members'=>$this->session->userdata("username"),'status'=>0])->num_rows(); echo "Count Engine : "$eng; ?>
+				</span>
 			</div>
 			<div class="card-body">
 				<ul>
