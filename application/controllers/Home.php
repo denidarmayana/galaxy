@@ -213,7 +213,7 @@ class Home extends CI_Controller
 		if ($cekuser == 0) {
 			json_error("Username not registered ",null);
 		}else{
-			$total_tiket = $this->db->get_where("enngine",['members'=>$this->session->userdata("username")])->num_rows();
+			$total_tiket = $this->db->get_where("engine",['members'=>$this->session->userdata("username")])->num_rows();
 			if ($total_tiket < $data['amount']) {
 				json_error("Your have not enoughr engine ",null);
 			}else{
