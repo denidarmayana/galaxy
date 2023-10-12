@@ -86,7 +86,7 @@
 				<ul>
 				<?php
 				foreach ($engine as $key) {
-					echo '<li>'.$key->engine.'</li>';
+					echo '<li>'.$key->code.'</li>';
 				}
 				?>
 				</ul>
