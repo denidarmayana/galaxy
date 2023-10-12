@@ -307,7 +307,7 @@ $("#btn_usdt_hash").click(function() {
 })
 $("#amount").keyup(function() {
 	var amount = $(this).val();
-	var fee =  parseInt(amount)*(10/100)
+	var fee =  parseInt(amount)*(0)
 	var net = parseInt(amount) - parseInt(fee)
 	var max = $("#max_wd").val();
 	var min = $("#min_wd").val();
