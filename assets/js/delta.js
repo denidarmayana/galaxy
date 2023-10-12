@@ -85,7 +85,7 @@ $("#transfer_engine").click(function() {
 		toastr.error("username can't be empty")
 	}else{
 		var settings = {
-		  "url": "./home/transfer",
+		  "url": "./home/transfer_engine",
 		  "method": "POST",
 		  "timeout": 0,
 		  "headers": {
