@@ -253,7 +253,7 @@ class Home extends CI_Controller
 	{
 		jsons();
 		$data = $this->input->post();
-		$cekuser = $this->db->get_where("engine",['code'=>$data['engine'],'status'=>0]);
+		$cekuser = $this->db->get_where("engine",['code'=>$data['engine'],'status'=>0,'send'=>0,'receiver'=>""]);
 		if ($cekuser->num_rows() == 0) {
 			json_error("Engine not registered ",null);
 		}else{
