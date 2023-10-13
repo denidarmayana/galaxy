@@ -110,6 +110,10 @@ $saldo_akhir = $total_bonus-($wd->amount+$infaq->amount);
 							<input type="hidden" id="min_wd" value="<?=$min ?>">
 							<input type="hidden" id="ticket" value="<?=$_GET['ticket'] ?>">
 							<div class="form-group">
+								<label class="mb-1"><strong>Trx ID</strong></label>
+								<input type="text" id="invoice" value="<?=$invoice ?>" readonly class="form-control" placeholder="0">
+							</div>
+							<div class="form-group">
 								<label class="mb-1"><strong>Amount</strong></label>
 								<input type="text" id="amount" class="form-control" placeholder="0">
 							</div>

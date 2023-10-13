@@ -17,6 +17,12 @@ class Model_app extends CI_Model
 			redirect("auth");
 		}
 	}
+	public function inv_wd()
+	{
+		$wd = $this->db->like('created_at',date("Y-m-d"))->get("widthdrawal")->num_rows();
+		$code = "G7WD".sprintf('%05d', $wd + 1).date('Ymd');
+		return $code;
+	}
 	function cekControl()
 	{
 		if ($this->session->userdata("is_admin") == TRUE) {

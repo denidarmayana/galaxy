@@ -1,3 +1,19 @@
+<?php if (isset($_GET['engine'])) { ?>
+	<?php if ($_GET['engine'] == "") {
+		header("refresh:5;url=./");
+		echo "<div class='alert alert-danger'>Engine can't be empy</div>";
+	}else{
+		$cek_engine = $this->db->get_where("engine",['status'=>0,'send'=>0,'code'=>$_GET['engine'],'members'=>$this->session->userdata("username")]);
+		if ($cek_engine->num_rows() == 0) {
+			header("refresh:5;url=./");
+			echo "<div class='alert alert-danger'>Engine not allowed</div>";
+		}else{
+			$this->db->update("engine",['status'=>1],['send'=>0,'code'=>$_GET['engine'],'members'=>$this->session->userdata("username")]);
+			echo "<div class='alert alert-success'>Engine Started</div>";
+			header("refresh:5;url=./");
+		}
+	}?>
+<?php } ?>
 <div class="row page-titles mx-0">
 	<div class="col-sm-6 col-12 p-md-0">
 		<div class="welcome-text">
@@ -76,12 +92,14 @@
 					</a>
 					<?php } else{ ?>
 						<br>
-						<div class="form-group">
-							<input type="text" class="form-control" id="value_engine" placeholder="Engine Galaxy">
-						</div>
-						<div class="form-group">
-							<button class="btn btn-success btn-block" id="start_engine">Start Engine</button>
-						</div>
+						<form method="get">
+							<div class="form-group">
+								<input type="text" class="form-control" name="engine" placeholder="Engine Galaxy">
+							</div>
+							<div class="form-group">
+								<button class="btn btn-success btn-block" type="submit">Start Engine</button>
+							</div>
+						</form>
 					<?php } ?>
 				</div>
 			</div>

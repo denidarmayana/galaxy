@@ -50,6 +50,7 @@ class Transaction extends CI_Controller
 			'title'=>"Dashboard",
 			'user'=>$this->db->get_where("members",['username'=>$this->session->userdata('username')])->row(),
 			'roi'=>$this->db->get_where("bsn_reff",['receive'=>$this->session->userdata('username')])->result(),
+			'invoice'=>$this->app->inv_wd(),
 			
 		];
 		$this->template->load("template",'withdrawal',$data);
