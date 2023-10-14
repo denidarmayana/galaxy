@@ -38,7 +38,7 @@ if (isset($_GET['id'])) {
 							<td>".number($key->net)." MBIT</td>
 							<td>".($key->status == 1 ? "Success" : "Pending")."</td>
 							<td>".$m->wallet."</td>
-							<td>".($key->status == 1 ? "" : $block)."</td>
+							<td>".($key->validate == 1 && $key->status == 1 ? "" : $block)."</td>
 							</tr>";
 						}
 						?>

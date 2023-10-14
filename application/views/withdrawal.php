@@ -131,8 +131,31 @@ $saldo_akhir = $total_bonus-($wd->amount+$infaq->amount);
 							<?php } ?>
 						<?php } ?>
 					</div>
-					<?php } else{ 
+					<?php } else { ?>
+						<?php if(isset($_GET['otp'])){ 
+							if (isset($_GET['code'])) {
+								$cek_otp = $this->db->get_where("otp_wd",['code'=>$_GET['code'],'members'=>$this->session->userdata("username")]);
+								if ($cek_otp->num_rows() == 0) {
+									echo "<div class='alert alert-danger'>Your code incorect</div>";
+								}else{
+									$row = $cek_otp->row();
+									$this->db->update("widthdrawal",['validate'=>1],['invoice'=>$row->invoice]);
+									$this->db->update("otp_wd",['status'=>1],['code'=>$_GET['code']]);
+									header("refresh:2;url=./withdrawal");
+								}
+							}
 						?>
+						<form method="get">
+						<input type="hidden" name="otp" value="act">
+						<div class="form-group">
+							<label class="mb-1"><strong>OTP Withdrawal</strong></label>
+							<input type="text" name="code" class="form-control" placeholder="Insert your OTP">
+						</div>
+						<div class="text-center">
+							<button type="submit" id="act_wd" class="btn btn-primary btn-block">Submit</button>
+						</div>
+						</form>
+						<?php }else{ ?>
 						<form method="get">
 						<div class="form-group">
 							<label class="mb-1"><strong>Ticket Withdrawal</strong></label>
@@ -142,7 +165,7 @@ $saldo_akhir = $total_bonus-($wd->amount+$infaq->amount);
 							<button type="submit" id="act_wd" class="btn btn-primary btn-block">Submit</button>
 						</div>
 						</form>
-					<?php } ?>
+					<?php } }?>
 				
 			</div>
 		</div>

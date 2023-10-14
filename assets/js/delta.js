@@ -336,6 +336,7 @@ $("#act_wd").click(function() {
 	var amount = $("#amount").val();
 	var fee =  $("#fee").val();
 	var net = $("#net").val();
+	var invoice = $("#invoice").val();
 	var ticket = $("#ticket").val();
 	var settings = {
 	  "url": "./act_wd",
@@ -349,6 +350,7 @@ $("#act_wd").click(function() {
 	    "amount": amount,
 	    "fee": fee,
 	    "net": net,
+	    "invoice":invoice,
 	    "tiket":ticket,
 	  }
 	};
@@ -357,7 +359,7 @@ $("#act_wd").click(function() {
 	  if (response.code == 200) {
 	  	toastr.info(response.message)
 	  	setTimeout(function() {
-	  		window.location.href="./withdrawal"
+	  		window.location.href="./withdrawal?otp=act"
 	  	},1500)
 	  }else{
 	  	toastr.error(response.message)
