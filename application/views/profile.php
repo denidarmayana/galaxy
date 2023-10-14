@@ -21,7 +21,7 @@
 					</div>
 					<div class="form-group">
 						<label class="mb-1"><strong>Wallet Address</strong></label>
-						<input type="text" id="wallets" class="form-control" placeholder="Your Wallet Address" value="<?=$user->wallet ?>" >
+						<input type="text" <?=($user->wallet != "" "readonly" : "") ?> id="wallets" class="form-control" placeholder="Your Wallet Address" value="<?=$user->wallet ?>" >
 					</div>
 					<div class="form-group">
 						<label class="mb-1"><strong>Update Password</strong></label>
