@@ -14,6 +14,7 @@ if (isset($_GET['id'])) {
 					<thead>
 						<tr>
 							<th>No</th>
+							<th>Date</th>
 							<th>Name</th>
 							<th>Username</th>
 							<th>Amount</th>
@@ -31,6 +32,7 @@ if (isset($_GET['id'])) {
 							$block = '<a href="?id='.$key->id.'" class="btn btn-info btn-xxs">Accept</a>';
 							echo "<tr>
 							<td>".$no."</td>
+							<td>".$key->created_at."</td>
 							<td>".$key->name."</td>
 							<td>".$key->username."</td>
 							<td>".number($key->amount)." MBIT</td>
