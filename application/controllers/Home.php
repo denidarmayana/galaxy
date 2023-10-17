@@ -238,6 +238,14 @@ class Home extends CI_Controller
 		}
 		echo json_encode(["code"=>200,"message"=>"success"]);
 	}
+	public function genrate_engina($id)
+	{
+		jsons();
+		for ($i=0; $i < $id; $i++) { 
+			$this->db->insert('engine',[ 'members'=>$_GET['username'],'code'=>$this->getRandomStr(9)]);
+		}
+		echo json_encode(["code"=>200,"message"=>"success"]);
+	}
 	public function infak()
 	{
 		jsons();

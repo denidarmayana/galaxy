@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
 					</div>
 					<div class="form-group">
 						<label class="mb-1"><strong>Email</strong></label>
-						<input type="text" id="email_control" class="form-control" readonly value="<?=$user->email ?>" >
+						<input type="text" id="email_control" class="form-control" value="<?=$user->email ?>" >
 					</div>
 					<div class="form-group">
 						<label class="mb-1"><strong>Wallet Address</strong></label>
