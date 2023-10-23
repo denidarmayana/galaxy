@@ -1,5 +1,5 @@
 <?php
-$paket = $this->db->select("paket.*")->order_by('subcribe.id','desc')->join('paket','subcribe.paket=paket.id')->get_where("subcribe",['subcribe.members'=>$this->session->userdata("username")])->row();
+$paket = $this->db->select("paket.*")->order_by('subcribe.id','desc')->join('paket','subcribe.paket=paket.id')->get_where("subcribe",['subcribe.members'=>$this->session->userdata("username"),'subcribe.status'=>1])->row();
 $bonus_level = $this->db->select_sum("amount")->get_where('bsn_reff',['receive'=>$this->session->userdata("username")])->row();
 $roi = $this->db->select_sum("amount")->get_where('roi',['members'=>$this->session->userdata("username")])->row();
 $reward = $this->db->select_sum("amount")->get_where('reward',['members'=>$this->session->userdata("username")])->row();
