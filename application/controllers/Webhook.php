@@ -18,7 +18,6 @@ class Webhook extends CI_Controller
 			$waktu = explode(" ", $key->updated_at);
 			$menit = explode(":", $waktu[1]);
 			$waktu_save = $menit[0].":".$menit[1];
-			echo date("H:i")." - ".$waktu_save;
 			if (date("H:i") == $waktu_save ) {
 				$cek_engine = $this->db->get_where("engine",['status'=>1,'members'=>$key->username])->num_rows();
 				if ($cek_engine != 0) {
@@ -63,7 +62,7 @@ class Webhook extends CI_Controller
 
 		$count_shapire = $this->db->get_where("members",['position'=>2])->num_rows();
 		$reward_shapire = $amount_omset*(0.5/100);
-		$amount_shapire = $reward_shapire/$amount_shapire;
+		$amount_shapire = $reward_shapire/$count_shapire;
 		$shapire = $this->db->get_where("members",['position'=>2])->result();
 		foreach ($shapire as $s) {
 			$cek = $this->db->like('created_at',$dates)->get_where("reward",['members'=>$s->username])->num_rows();
