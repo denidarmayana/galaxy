@@ -93,8 +93,8 @@ class Webhook extends CI_Controller
 				$this->db->insert("roi",[
 						'members'=>$key->username,
 						'amount'=>$harian,
-						'created_at'=>date("Y-m-d H:i:s"),
-						'updated_at'=>date("Y-m-d H:i:s")
+						'created_at'=>"2023-10-23 00:00:00",
+						'updated_at'=>"2023-10-23 00:00:00"
 					]);
 			}
 			
