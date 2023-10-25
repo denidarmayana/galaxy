@@ -18,7 +18,7 @@ class Transaction extends CI_Controller
 		$data = [
 			'title'=>"Dashboard",
 			'user'=>$this->db->get_where("members",['username'=>$this->session->userdata('username')])->row(),
-			'roi'=>$this->db->get_where("roi",['members'=>$this->session->userdata('username')])->result(),
+			'roi'=>$this->db->order_by('created_at','asc')->get_where("roi",['members'=>$this->session->userdata('username')])->result(),
 			
 		];
 		$this->template->load("template",'daily',$data);
