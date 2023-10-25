@@ -80,4 +80,24 @@ class Webhook extends CI_Controller
 		}
 		//manager
 	}
+	public function perbaikan()
+	{
+		$sub = $this->db->select('members.username,paket.amount,subcribe.updated_at')->join('members','members.username=subcribe.members')->join('paket','subcribe.paket=paket.id')->order_by('subcribe.id','desc')->get_where("subcribe",['subcribe.status'=>1])->result();
+		foreach ($sub as $key) {
+			$harian = $key->amount*(5/100);
+			$waktu = explode(" ", $key->updated_at);
+			$menit = explode(":", $waktu[1]);
+			$waktu_save = $menit[0].":".$menit[1];
+			$cek_roi = $this->db->like('created_at',"2023-10-23")->get_where("roi",['members'=>$key->username])->num_rows();
+			if ($cek_roi == 0) {
+				$this->db->insert("roi",[
+						'members'=>$key->username,
+						'amount'=>$harian,
+						'created_at'=>date("Y-m-d H:i:s"),
+						'updated_at'=>date("Y-m-d H:i:s")
+					]);
+			}
+			
+		}
+	}
 }
