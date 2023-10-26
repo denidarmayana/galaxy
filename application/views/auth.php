@@ -75,6 +75,18 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      
+	      <div class="modal-body">
+	        <img src="<?=base_url('assets/dewan.jpg') ?>" class="img-responsive img-thumbnail">
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
 <!--**********************************
 	Scripts
 ***********************************-->
@@ -86,7 +98,8 @@
 <script src="<?=base_url() ?>assets/js/toastr.min.js?=<?=time() ?>"></script>
 <script src="<?=base_url() ?>assets/js/auth.js?=<?=time() ?>"></script>
 <script>
-	
+	var myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
+	myModal.show();
 </script>
 </body>
 
