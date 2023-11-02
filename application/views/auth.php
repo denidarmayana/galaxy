@@ -81,7 +81,7 @@
 	    <div class="modal-content">
 	      
 	      <div class="modal-body">
-	        <img src="<?=base_url('assets/dewan.jpg') ?>" class="img-responsive img-thumbnail">
+	        <img src="<?=base_url('assets/dewan_2.jpg') ?>" class="img-responsive img-thumbnail">
 	      </div>
 	      
 	    </div>
