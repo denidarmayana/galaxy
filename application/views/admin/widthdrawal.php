@@ -46,7 +46,7 @@ if (isset($_GET['del'])) {
 							<td>".number($key->net)." MBIT</td>
 							<td>".($key->status == 1 ? "Success" : "Pending")."</td>
 							<td>".$m->wallet."</td>
-							<td>".($key->status == 1 ? $del : $block." ".$del)."</td>
+							<td>".($key->status == 1 ? "" : $block." ".$del)."</td>
 							</tr>";
 						}
 						?>
