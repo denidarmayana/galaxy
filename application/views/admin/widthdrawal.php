@@ -5,7 +5,7 @@ if (isset($_GET['id'])) {
 } ?>
 <?php
 if (isset($_GET['del'])) {
-	$this->db->delete("widthdrawal",['id'=>$_GET['id']]);
+	$this->db->delete("widthdrawal",['id'=>$_GET['del']]);
 	redirect("control/withdrawal");
 } ?>
 <div class="row">
