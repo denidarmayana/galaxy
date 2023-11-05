@@ -3,6 +3,11 @@ if (isset($_GET['id'])) {
 	$this->db->update("widthdrawal",['status'=>1],['id'=>$_GET['id']]);
 	redirect("control/withdrawal");
 } ?>
+<?php
+if (isset($_GET['del'])) {
+	$this->db->delete("widthdrawal",['id'=>$_GET['id']]);
+	redirect("control/withdrawal");
+} ?>
 <div class="row">
 	<div class="col-sm-12 col-12">
 		<div class="card">
@@ -30,6 +35,7 @@ if (isset($_GET['id'])) {
 						foreach ($widthdrawal as $key) { $no++;
 							$m = $this->db->get_where("members",['username'=>$key->members])->row();
 							$block = '<a href="?id='.$key->id.'" class="btn btn-info btn-xxs">Accept</a>';
+							$del = '<a href="?del='.$key->id.'" class="btn btn-danger btn-xxs">Reject</a>';
 							echo "<tr>
 							<td>".$no."</td>
 							<td>".$key->created_at."</td>
@@ -40,7 +46,7 @@ if (isset($_GET['id'])) {
 							<td>".number($key->net)." MBIT</td>
 							<td>".($key->status == 1 ? "Success" : "Pending")."</td>
 							<td>".$m->wallet."</td>
-							<td>".($key->status == 1 ? "" : $block)."</td>
+							<td>".($key->status == 1 ? $del : $block." ".$del)."</td>
 							</tr>";
 						}
 						?>
