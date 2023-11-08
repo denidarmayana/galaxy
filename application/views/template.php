@@ -145,6 +145,8 @@
 	                <span class="nav-text">My Engine</span>
 	            </a>
 	        </li>
+	        <?php $cek_engine = $this->db->get_where("engine",['members'=>$this->session->userdata("username"),'status'=>1])->num_rows();
+	        if ($cek_engine != 0 ) { ?>}
 	        <li><a href="<?=base_url('infak') ?>">
 	                <i class="flaticon-381-diamond"></i>
 	                <span class="nav-text">Infaq</span>
@@ -177,7 +179,8 @@
 	                <span class="nav-text">My Ticket</span>
 	            </a>
 	        </li>
-	        <li><a href="<?=base_url('bot') ?>">
+	    	<?php } ?>
+	        <li><a href="https://bitbot.biz.id" target="_blank">
 	                <i class="flaticon-381-database"></i>
 	                <span class="nav-text">Bit Bot</span>
 	            </a>

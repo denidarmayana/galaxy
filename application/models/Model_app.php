@@ -17,6 +17,13 @@ class Model_app extends CI_Model
 			redirect("auth");
 		}
 	}
+	function cekEngine()
+	{
+		$cek_engine = $this->db->get_where("engine",['members'=>$this->session->userdata("username"),'status'=>1])->num_rows();
+		if ($cek_engine == 0 ) {
+			redirect("engine");
+		}
+	}
 	public function inv_wd()
 	{
 		$wd = $this->db->like('created_at',date("Y-m-d"))->get("widthdrawal")->num_rows();

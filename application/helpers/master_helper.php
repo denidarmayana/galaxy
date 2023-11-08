@@ -13,7 +13,18 @@ if (!function_exists("json_success")) {
 		echo json_encode($data);
 	}
 }
-
+if (!function_exists("cekEngine")) {
+	function cekEngine()
+	{
+		$app =& get_instance();
+		$cek_engine = $app->db->get_where("engine",['members'=>$app->session->userdata("username"),'status'=>1])->num_rows();
+		if ($cek_engine != 0) {
+			return redirect('engine');
+		}else{
+			return true;
+		}
+	}
+}
 if (!function_exists("json_error")) {
 	function json_error($message,$data)
 	{

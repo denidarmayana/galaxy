@@ -11,6 +11,7 @@ class Home extends CI_Controller
 		$this->load->model("model_app",'app');
 		$this->app->cekSession();
 		$this->app->cekPaket();
+		
 		date_default_timezone_set("Asia/Jakarta");
 	}
 	public function index()
