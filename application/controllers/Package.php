@@ -10,7 +10,7 @@ class Package extends CI_Controller
 		parent::__construct();
 		$this->load->model("model_app",'app');
 		$this->app->cekSession();
-		$this->app->cekEngine();
+		
 	}
 	public function index()
 	{

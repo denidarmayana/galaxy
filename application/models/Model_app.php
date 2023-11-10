@@ -92,17 +92,22 @@ class Model_app extends CI_Model
 	public function cekPaket()
 	{
 		$sub = $this->db->select('paket.amount')->order_by('subcribe.id','desc')->join('paket','paket.id=subcribe.paket')->get_where("subcribe",['subcribe.members'=>$this->session->userdata("username")])->row();
-		$limit = $sub->amount * (300/100);
-		$bns_level = $this->db->select_sum("amount")->get_where("bsn_reff",['receive'=>$this->session->userdata("username")])->row();
-		$roi = $this->db->select_sum("amount")->get_where("roi",['members'=>$this->session->userdata("username")])->row();
-		$penerimaan = $bns_level->amount+$roi->amount;
-		if ($penerimaan >= $limit ) {
-			if($this->session->userdata("username") != "Pejuangtangguh"){
-				redirect("package");
+		if ($sub) {
+			$limit = $sub->amount * (300/100);
+			$bns_level = $this->db->select_sum("amount")->get_where("bsn_reff",['receive'=>$this->session->userdata("username")])->row();
+			$roi = $this->db->select_sum("amount")->get_where("roi",['members'=>$this->session->userdata("username")])->row();
+			$penerimaan = $bns_level->amount+$roi->amount;
+			if ($penerimaan >= $limit ) {
+				if($this->session->userdata("username") != "Pejuangtangguh"){
+					redirect("package");
+				}
+				
+			}else{
+				return TRUE;
 			}
-			
 		}else{
-			return TRUE;
+			redirect("package");
 		}
+		
 	}
 }
